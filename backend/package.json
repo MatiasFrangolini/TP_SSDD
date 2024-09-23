@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "uuid": "^10.0.0"
+  }
+}
