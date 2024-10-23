@@ -1,0 +1,14 @@
+[
+  {
+    "uid": "282e61cd-af5b-4c01-ac22-bd9c5dcec631",
+    "lat": 123123312312,
+    "lng": 12312415455,
+    "description": "A large carnivorous feline native to Africa, known for its strength and majestic mane."
+  },
+  {
+    "uid": "a806bde9-9bef-4acd-b413-5db62d29bf93",
+    "lat": 40.7128,
+    "lng": -74.006,
+    "description": "New York City"
+  }
+]

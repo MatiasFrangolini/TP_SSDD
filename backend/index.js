@@ -6,6 +6,12 @@ import {
   getAllAnimals,
 } from "./controllers/AnimalController.js";
 
+import {
+  addControlPoint,
+  deleteControlPoint,
+  getAllControlPoints,
+} from "./controllers/PuntoControlController.js";
+
 const server = http.createServer((req, res) => {
   if (req.url.startsWith("/animals")) {
     //console.log('Entra')
@@ -22,11 +28,11 @@ const server = http.createServer((req, res) => {
   } else {
     if (req.url.startsWith("/controls")) {
       if (req.method === "GET") {
-        getAllControls(req, res);
+        getAllControlPoints(req, res);
       } else if (req.method === "POST") {
-        addControl(req, res);
+        addControlPoint(req, res);
       } else if (req.method === "DELETE") {
-        deleteControl(req, res);
+        deleteControlPoint(req, res);
       }
     } else {
       res.writeHead(404, "Ruta no encontrada");
