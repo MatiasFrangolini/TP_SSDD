@@ -1,22 +1,29 @@
-
-import { getControlPoints, writeControlPoints } from "../repositories/PuntoControlRepository.js";
+import {
+  getControlPoints,
+  writeControlPoints,
+} from "../repositories/PuntoControlRepository.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const controlPointService = {
   addControlPoint: (controlPointData) => {
-    if (!controlPointData.name || !controlPointData.description) {
+    if (
+      !controlPointData.lat ||
+      !controlPointData.lng ||
+      !controlPointData.description
+    ) {
       throw new Error("Invalid data");
     }
-
     const existingControlPoints = getControlPoints();
+
     const newControlPoint = {
       uid: uuidv4(),
       lat: controlPointData.lat,
-      lng: controlPointsData.lng,
+      lng: controlPointData.lng,
       description: controlPointData.description,
     };
+    console.log(newControlPoint);
     existingControlPoints.push(newControlPoint);
-    writeAnimals(existingControlPoints);
+    writeControlPoints(existingControlPoints);
 
     return newControlPoint;
   },
