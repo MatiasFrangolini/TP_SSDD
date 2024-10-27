@@ -1,12 +1,11 @@
-[
-  {
-    "id": "BT2",
-    "name": "Vaca 2",
-    "description": "Ternero, marron, 20kg."
-  },
-  {
-    "id": "BT3",
-    "name": "Vaca 3",
-    "description": "Toro, 350 kg"
+{
+  "data": {
+    "animals": [
+      {
+        "id": "BT3",
+        "name": "Vaca 3",
+        "description": "Toro, 350 kg"
+      }
+    ]
   }
-]
+}
