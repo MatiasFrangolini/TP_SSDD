@@ -21,20 +21,17 @@ export const addAnimal = (req, res) => {
 
 export const getAllAnimals = (req, res) => {
   const animals = AnimalService.getAllAnimals();
-  console.log(animals);
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(animals));
 };
 
 export const deleteAnimal = (req, res) => {
-  let body = "";
-  req.on("data", (chunk) => {
-    body += chunk;
-  });
-  req.on("end", () => {
+  const parametros = req.url.split('/');
+  console.log(parametros);
+  const id = parametros[2];
+  console.log(id);
     try {
-      const parsedBody = JSON.parse(body);
-      AnimalService.deleteAnimal(parsedBody.uid);
+      AnimalService.deleteAnimal(id);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Animal deleted successfully" }));
@@ -42,5 +39,5 @@ export const deleteAnimal = (req, res) => {
       res.writeHead(400, "Invalid request!");
       res.end();
     }
-  });
 };
+

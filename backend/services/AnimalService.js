@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 
 export const AnimalService = {
   addAnimal: (animalData) => {
-    if (!animalData.name || !animalData.description) {
+    if (!animalData.name || !animalData.description || !animalData.id) {
       throw new Error("Invalid data");
     }
 
     const existingAnimals = getAnimals();
     const newAnimal = {
-      uid: uuidv4(),
+      id: animalData.id,
       name: animalData.name,
       description: animalData.description,
     };
@@ -23,10 +23,12 @@ export const AnimalService = {
     return getAnimals();
   },
 
-  deleteAnimal: (uid) => {
-    const existingAnimals = getAnimals();
+  deleteAnimal: (id) => {
+    const arch = getAnimals();
+    const existingAnimals = arch.data.animals;
+    console.log(existingAnimals); 
     const updatedAnimals = existingAnimals.filter(
-      (animal) => animal.uid !== uid
+      (animal) => animal.id !== id
     );
 
     if (existingAnimals.length === updatedAnimals.length) {
