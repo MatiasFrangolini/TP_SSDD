@@ -3,14 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 
 export const AnimalService = {
   addAnimal: (animalData) => {
-    if (!animalData.name || !animalData.description || !animalData.id) {
+    if (!animalData.description || !animalData.id) {
       throw new Error("Invalid data");
     }
 
     const existingAnimals = getAnimals();
+    const nombre ='';
+    if (animalData.name)
+      nombre = animalData.name;
     const newAnimal = {
       id: animalData.id,
-      name: animalData.name,
+      name: nombre,
       description: animalData.description,
     };
     existingAnimals.push(newAnimal);

@@ -3,8 +3,9 @@
     "animals": [
       {
         "id": "BT3",
-        "name": "Vaca 3",
-        "description": "Toro, 350 kg"
+        "lat": "-38.00042",
+        "long": "-57.5562.",
+        "description": "Zona de bebederos"
       }
     ]
   }
