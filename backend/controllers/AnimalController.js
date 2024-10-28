@@ -27,9 +27,7 @@ export const getAllAnimals = (req, res) => {
 
 export const deleteAnimal = (req, res) => {
   const parametros = req.url.split('/');
-  console.log(parametros);
   const id = parametros[2];
-  console.log(id);
     try {
       AnimalService.deleteAnimal(id);
 
@@ -41,3 +39,22 @@ export const deleteAnimal = (req, res) => {
     }
 };
 
+export const patchAnimal = (req, res) => {
+  const parametros = req.url.split('/');
+  const id = parametros[2];
+  let body = "";
+  req.on("data", (chunk) => {
+    body += chunk;
+  });
+  req.on("end", () => {
+    try {
+      const parsedBody = JSON.parse(body);
+      AnimalService.patchAnimal(id,parsedBody);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Animal updated successfully" }));
+    } catch (error) {
+      res.writeHead(400, "Invalid request!");
+      res.end();
+    }
+  });
+};

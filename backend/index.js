@@ -4,6 +4,7 @@ import {
   addAnimal,
   deleteAnimal,
   getAllAnimals,
+  patchAnimal,
 } from "./controllers/AnimalController.js";
 
 import {
@@ -21,6 +22,8 @@ const server = http.createServer((req, res) => {
       addAnimal(req, res);
     } else if (req.method === "DELETE") {
       deleteAnimal(req, res);
+    } else if (req.method === "PATCH"){
+      patchAnimal(req, res)
     } else {
       res.writeHead(404, "Ruta no encontrada");
       res.end();

@@ -3,8 +3,8 @@
     "animals": [
       {
         "id": "BT3",
-        "name": "Vaca 3",
-        "description": "Toro, 350 kg"
+        "name": "Vaca inside",
+        "description": "descripcion updateada"
       }
     ]
   }

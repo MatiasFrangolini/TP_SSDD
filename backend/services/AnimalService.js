@@ -1,3 +1,4 @@
+import { patchAnimal } from "../controllers/AnimalController.js";
 import { getAnimals, writeAnimals } from "../repositories/AnimalRepository.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -29,7 +30,6 @@ export const AnimalService = {
   deleteAnimal: (id) => {
     const arch = getAnimals();
     const existingAnimals = arch.data.animals;
-    console.log(existingAnimals); 
     const updatedAnimals = existingAnimals.filter(
       (animal) => animal.id !== id
     );
@@ -39,5 +39,23 @@ export const AnimalService = {
     }
 
     writeAnimals(updatedAnimals);
+  },
+
+  patchAnimal: (id, animalData) =>{
+    var ver = 0;
+    const arch = getAnimals();
+    var existingAnimals = arch.data.animals; 
+    existingAnimals.forEach(animal => {
+      if (animal.id = id){
+        ver = 1;
+        animal.name = animalData.name;
+        animal.description = animalData.description;
+      }
+    });
+    if (ver == 0) {
+      throw new Error("Animal not found");
+    }
+
+    writeAnimals(existingAnimals);
   },
 };
