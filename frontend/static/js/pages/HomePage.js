@@ -12,6 +12,7 @@ export default class HomePage {
       if (!this.animals || this.animals?.length <= 0) {
         const data = await AnimalsAPIHelper.getAnimals();
         this.animals = data;
+        console.log(this.animals);
       }
     } catch (e) {
       console.log(e);

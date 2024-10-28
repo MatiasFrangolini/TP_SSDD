@@ -1,4 +1,4 @@
-import { API_ROUTES } from "../../constants/constants";
+import { API_ROUTES } from "../../constants/constants.js";
 
 export default class AnimalsApiHelper {
   static getAnimals() {

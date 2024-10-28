@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename); // get the name of the directory
 
 app.use(
   "/static",
-  expressStatic(join(__dirname, "..", "..", "frontend", "static"))
+  expressStatic(join(__dirname, "..", "..", "TP_SSDD", "frontend", "static"))
 );
 app.get("/*", (req, res) => {
   res.sendFile(
