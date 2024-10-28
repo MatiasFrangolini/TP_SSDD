@@ -10,10 +10,24 @@
 </head>
 <body>
     <div id="container">
-        <h1 class="text-3xl bg-green-300">prueba tailwind</h1>
+        <nav class="bg-gray-800">
+            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+              <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                  <div class="hidden sm:ml-6 sm:block">
+                    <div class="flex space-x-4">
+                      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                      <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Animals</a>
+                      <a href="/add" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Add Animal</a>
+                      <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
-
-    <script type="module" src="/static/js/index.js"></script>
+    <script type="module" src="./static/js/index.js"></script>
 </body>
 </html>
