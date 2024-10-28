@@ -5,13 +5,13 @@ import {
   deleteAnimal,
   getAllAnimals,
   patchAnimal,
-} from "./controllers/AnimalController.js";
+} from "./controllers/animalController.js";
 
 import {
-  addControlPoint,
-  deleteControlPoint,
-  getAllControlPoints,
-} from "./controllers/PuntoControlController.js";
+  addCheckPoint,
+  deleteCheckPoint,
+  getAllCheckPoints,
+} from "./controllers/checkPointController.js";
 
 const server = http.createServer((req, res) => {
   if (req.url.startsWith("/animals")) {
@@ -31,11 +31,11 @@ const server = http.createServer((req, res) => {
   } else {
     if (req.url.startsWith("/controls")) {
       if (req.method === "GET") {
-        getAllControlPoints(req, res);
+        getAllCheckPoints(req, res);
       } else if (req.method === "POST") {
-        addControlPoint(req, res);
+        addCheckPoint(req, res);
       } else if (req.method === "DELETE") {
-        deleteControlPoint(req, res);
+        deleteCheckPoint(req, res);
       }
     } else {
       res.writeHead(404, "Ruta no encontrada");

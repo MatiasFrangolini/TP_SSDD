@@ -1,6 +1,6 @@
-import { controlPointService } from "../services/PuntoControlService.js";
+import { checkPointService } from "../services/checkPointService.js";
 
-export const addControlPoint = (req, res) => {
+export const addCheckPoint = (req, res) => {
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
@@ -8,10 +8,10 @@ export const addControlPoint = (req, res) => {
   req.on("end", () => {
     try {
       const parsedBody = JSON.parse(body);
-      const newControlPoint = controlPointService.addControlPoint(parsedBody);
-      console.log(newControlPoint);
+      const newCheckPoint = checkPointService.addCheckPoint(parsedBody);
+      console.log(newCheckPoint);
       res.writeHead(201, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(newControlPoint));
+      res.end(JSON.stringify(newCheckPoint));
     } catch (error) {
       res.writeHead(400, "Invalid request!");
       res.end();
@@ -19,14 +19,14 @@ export const addControlPoint = (req, res) => {
   });
 };
 
-export const getAllControlPoints = (req, res) => {
-  const controlPoints = controlPointService.getAllControlPoints();
-  console.log(controlPoints);
+export const getAllCheckPoints = (req, res) => {
+  const checkPoints = checkPointService.getAllCheckPoints();
+  console.log(checkPoints);
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify(controlPoints));
+  res.end(JSON.stringify(checkPoints));
 };
 
-export const deleteControlPoint = (req, res) => {
+export const deleteCheckPoint = (req, res) => {
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
@@ -34,11 +34,11 @@ export const deleteControlPoint = (req, res) => {
   req.on("end", () => {
     try {
       const parsedBody = JSON.parse(body);
-      controlPointService.deleteControlPoint(parsedBody.uid);
+      checkPointService.deleteCheckPoint(parsedBody.uid);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(
-        JSON.stringify({ message: "Control point deleted successfully" })
+        JSON.stringify({ message: "Checkpoint deleted successfully" })
       );
     } catch (error) {
       res.writeHead(400, "Invalid request!");

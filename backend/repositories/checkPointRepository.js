@@ -1,8 +1,8 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 
-export const FILE_PATH = "./jsondb/controlPoints.json";
+export const FILE_PATH = "./jsondb/checkPoints.json";
 
-export const getControlPoints = () => {
+export const getCheckPoints = () => {
   const fileExist = existsSync(FILE_PATH);
   if (fileExist) {
     const file = readFileSync(FILE_PATH, "utf-8");
@@ -13,6 +13,6 @@ export const getControlPoints = () => {
   }
 };
 
-export const writeControlPoints = (controlPoints) => {
-  writeFileSync(FILE_PATH, JSON.stringify(controlPoints, null, 2));
+export const writeCheckPoints = (checkPoints) => {
+  writeFileSync(FILE_PATH, JSON.stringify(checkPoints, null, 2));
 };

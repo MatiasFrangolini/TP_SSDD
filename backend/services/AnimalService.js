@@ -1,5 +1,5 @@
-import { patchAnimal } from "../controllers/AnimalController.js";
-import { getAnimals, writeAnimals } from "../repositories/AnimalRepository.js";
+import { patchAnimal } from "../controllers/animalController.js";
+import { getAnimals, writeAnimals } from "../repositories/animalRepository.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const AnimalService = {

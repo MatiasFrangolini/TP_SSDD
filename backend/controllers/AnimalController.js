@@ -1,4 +1,4 @@
-import { AnimalService } from "../services/AnimalService.js";
+import { AnimalService } from "../services/animalService.js";
 
 export const addAnimal = (req, res) => {
   let body = "";
