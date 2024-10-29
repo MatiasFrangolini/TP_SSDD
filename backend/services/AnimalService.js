@@ -2,14 +2,13 @@ import { patchAnimal } from "../controllers/animalController.js";
 import { getAnimals, writeAnimals } from "../repositories/animalRepository.js";
 import { v4 as uuidv4 } from "uuid";
 
-export const AnimalService = {
+export const animalService = {
   addAnimal: (animalData) => {
     if (!animalData.description || !animalData.id) {
       throw new Error("Invalid data");
     }
-
-    const existingAnimals = getAnimals();
-    const nombre ='';
+    let existingAnimals = getAnimals().data.animals;
+    let nombre =" ";
     if (animalData.name)
       nombre = animalData.name;
     const newAnimal = {

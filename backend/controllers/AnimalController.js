@@ -1,4 +1,4 @@
-import { AnimalService } from "../services/animalService.js";
+import { animalService as animalService } from "../services/animalService.js";
 
 export const addAnimal = (req, res) => {
   let body = "";
@@ -8,11 +8,12 @@ export const addAnimal = (req, res) => {
   req.on("end", () => {
     try {
       const parsedBody = JSON.parse(body);
-      const newAnimal = AnimalService.addAnimal(parsedBody);
+      const newAnimal = animalService.addAnimal(parsedBody);
 
       res.writeHead(201, { "Content-Type": "application/json" });
       res.end(JSON.stringify(newAnimal));
     } catch (error) {
+      console.log(error);
       res.writeHead(400, "Invalid request!");
       res.end();
     }
@@ -20,16 +21,16 @@ export const addAnimal = (req, res) => {
 };
 
 export const getAllAnimals = (req, res) => {
-  const animals = AnimalService.getAllAnimals();
+  const animals = animalService.getAllAnimals();
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(animals));
 };
 
 export const deleteAnimal = (req, res) => {
   const parametros = req.url.split('/');
-  const id = parametros[2];
+  const id = parametros[3];
     try {
-      AnimalService.deleteAnimal(id);
+      animalService.deleteAnimal(id);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Animal deleted successfully" }));
@@ -41,7 +42,7 @@ export const deleteAnimal = (req, res) => {
 
 export const patchAnimal = (req, res) => {
   const parametros = req.url.split('/');
-  const id = parametros[2];
+  const id = parametros[3];
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
@@ -49,7 +50,7 @@ export const patchAnimal = (req, res) => {
   req.on("end", () => {
     try {
       const parsedBody = JSON.parse(body);
-      AnimalService.patchAnimal(id,parsedBody);
+      animalService.patchAnimal(id,parsedBody);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Animal updated successfully" }));
     } catch (error) {

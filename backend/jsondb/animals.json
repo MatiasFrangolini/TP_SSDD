@@ -5,6 +5,11 @@
         "id": "BT3",
         "name": "Vaca inside",
         "description": "descripcion updateada"
+      },
+      {
+        "id": "BT1",
+        "name": "Prueba /api",
+        "description": "blabla"
       }
     ]
   }

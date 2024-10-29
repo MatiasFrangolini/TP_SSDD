@@ -14,8 +14,8 @@ import {
 } from "./controllers/checkPointController.js";
 
 const server = http.createServer((req, res) => {
-  if (req.url.startsWith("/animals")) {
-    //console.log('Entra')
+  if (req.url.startsWith("/api/animals")) {
+    console.log('Entra')
     if (req.method === "GET") {
       getAllAnimals(req, res);
     } else if (req.method === "POST") {
@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
       res.end();
     }
   } else {
-    if (req.url.startsWith("/controls")) {
+    if (req.url.startsWith("/api/controls")) {
       if (req.method === "GET") {
         getAllCheckPoints(req, res);
       } else if (req.method === "POST") {
