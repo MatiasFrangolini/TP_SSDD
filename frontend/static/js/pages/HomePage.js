@@ -25,8 +25,8 @@ export default class HomePage {
 
   render() {
     let animalsHtml = `
-        <h3 class="bg-gray">Animales disponibles:</h3>
-        <div>
+        <h3 class="bg-gray text-center">Animales disponibles:</h3>
+        <div class="flex flex-wrap justify-center">
     `;
     this.animals?.forEach((animal) => {
       animalsHtml += new AnimalItem(animal).render();
