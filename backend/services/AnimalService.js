@@ -1,6 +1,4 @@
-import { patchAnimal } from "../controllers/animalController.js";
 import { getAnimals, writeAnimals } from "../repositories/animalRepository.js";
-import { v4 as uuidv4 } from "uuid";
 
 export const animalService = {
   addAnimal: (animalData) => {
@@ -8,9 +6,8 @@ export const animalService = {
       throw new Error("Invalid data");
     }
     let existingAnimals = getAnimals().data.animals;
-    let nombre =" ";
-    if (animalData.name)
-      nombre = animalData.name;
+    let nombre = " ";
+    if (animalData.name) nombre = animalData.name;
     const newAnimal = {
       id: animalData.id,
       name: nombre,
@@ -29,9 +26,7 @@ export const animalService = {
   deleteAnimal: (id) => {
     const arch = getAnimals();
     const existingAnimals = arch.data.animals;
-    const updatedAnimals = existingAnimals.filter(
-      (animal) => animal.id !== id
-    );
+    const updatedAnimals = existingAnimals.filter((animal) => animal.id !== id);
 
     if (existingAnimals.length === updatedAnimals.length) {
       throw new Error("Animal not found");
@@ -40,12 +35,12 @@ export const animalService = {
     writeAnimals(updatedAnimals);
   },
 
-  patchAnimal: (id, animalData) =>{
+  patchAnimal: (id, animalData) => {
     var ver = 0;
     const arch = getAnimals();
-    var existingAnimals = arch.data.animals; 
-    existingAnimals.forEach(animal => {
-      if (animal.id = id){
+    var existingAnimals = arch.data.animals;
+    existingAnimals.forEach((animal) => {
+      if ((animal.id = id)) {
         ver = 1;
         animal.name = animalData.name;
         animal.description = animalData.description;

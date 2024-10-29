@@ -12,10 +12,8 @@ export default class HomePage {
       if (!this.animals || this.animals?.length <= 0) {
         const data = await AnimalsAPIHelper.getAnimals();
         this.animals = data.animals;
-        console.log(this.animals);
       }
     } catch (e) {
-      console.log("catch");
       console.log(e);
       this.animals = [];
     } finally {
@@ -25,8 +23,8 @@ export default class HomePage {
 
   render() {
     let animalsHtml = `
-        <h3 class="bg-gray text-center">Animales disponibles:</h3>
-        <div class="flex flex-wrap justify-center">
+        <h3 class="bg-gray text-center my-8 font-bold text-2xl">Animales disponibles:</h3>
+        <div class="grid grid-cols-4 gap-4">
     `;
     this.animals?.forEach((animal) => {
       animalsHtml += new AnimalItem(animal).render();

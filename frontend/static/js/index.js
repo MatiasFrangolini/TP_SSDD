@@ -3,7 +3,7 @@ import AnimalFormPage from "./pages/AnimalFormPage.js";
 import LoggedInLayout from "./components/layouts/LoggedInLayout.js";
 
 export const navigateTo = (url) => {
-  history.pushState({}, "", url);
+  window.history.pushState({}, "", url);
   loadPage();
 };
 
