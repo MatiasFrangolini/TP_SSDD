@@ -4,17 +4,18 @@ import AnimalItem from "../components/AnimalItem.js";
 export default class HomePage {
   constructor(selector) {
     this.container = document.getElementById(selector);
-    this.loadGames();
+    this.loadAnimals();
   }
 
-  async loadGames() {
+  async loadAnimals() {
     try {
       if (!this.animals || this.animals?.length <= 0) {
         const data = await AnimalsAPIHelper.getAnimals();
-        this.animals = data;
+        this.animals = data.animals;
         console.log(this.animals);
       }
     } catch (e) {
+      console.log("catch");
       console.log(e);
       this.animals = [];
     } finally {

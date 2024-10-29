@@ -28,7 +28,6 @@ function loadLayout() {
 function loadPage() {
   loadLayout();
   if (location.pathname === "/") {
-    console.log("HOLA");
     new HomePage("layout-content");
   } else if (location.pathname === "/add") {
     console.log("add");
@@ -42,7 +41,6 @@ window.route = route;
 window.onpopstate = loadPage;
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM loaded");
   document.body.addEventListener("click", (e) => {
     if (e.target.matches("[data-link]")) {
       e.preventDefault();

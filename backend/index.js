@@ -14,33 +14,48 @@ import {
 } from "./controllers/checkPointController.js";
 
 const server = http.createServer((req, res) => {
+  // Configuración de encabezados CORS
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Permitir todos los orígenes (cambiar '*' por un origen específico si es necesario)
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Manejo de solicitudes OPTIONS (pre-flight para CORS)
+  if (req.method === "OPTIONS") {
+    res.writeHead(204); // Respuesta sin contenido para solicitudes OPTIONS
+    res.end();
+    return;
+  }
+
   if (req.url.startsWith("/api/animals")) {
-    console.log('Entra')
     if (req.method === "GET") {
       getAllAnimals(req, res);
     } else if (req.method === "POST") {
       addAnimal(req, res);
     } else if (req.method === "DELETE") {
       deleteAnimal(req, res);
-    } else if (req.method === "PATCH"){
-      patchAnimal(req, res)
+    } else if (req.method === "PATCH") {
+      patchAnimal(req, res);
+    } else {
+      res.writeHead(404, "Ruta no encontrada");
+      res.end();
+    }
+  } else if (req.url.startsWith("/api/controls")) {
+    if (req.method === "GET") {
+      getAllCheckPoints(req, res);
+    } else if (req.method === "POST") {
+      addCheckPoint(req, res);
+    } else if (req.method === "DELETE") {
+      deleteCheckPoint(req, res);
     } else {
       res.writeHead(404, "Ruta no encontrada");
       res.end();
     }
   } else {
-    if (req.url.startsWith("/api/controls")) {
-      if (req.method === "GET") {
-        getAllCheckPoints(req, res);
-      } else if (req.method === "POST") {
-        addCheckPoint(req, res);
-      } else if (req.method === "DELETE") {
-        deleteCheckPoint(req, res);
-      }
-    } else {
-      res.writeHead(404, "Ruta no encontrada");
-      res.end();
-    }
+    res.writeHead(404, "Ruta no encontrada");
+    res.end();
   }
 });
 
