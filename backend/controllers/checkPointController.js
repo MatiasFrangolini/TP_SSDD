@@ -20,8 +20,14 @@ export const addCheckPoint = (req, res) => {
 };
 
 export const getAllCheckPoints = (req, res) => {
-  const checkPoints = checkPointService.getAllCheckPoints();
-  console.log(checkPoints);
+  const parametros = req.url.split('/');
+  let checkPoints;
+  if (parametros[3]){
+    const id = parametros[3]
+    checkPoints = checkPointService.getSpecificCheckPoint(id);
+  } else {
+    checkPoints = checkPointService.getAllCheckPoints();
+  }
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(checkPoints));
 };

@@ -32,6 +32,23 @@ export const checkPointService = {
     return getCheckPoints();
   },
 
+  getSpecificCheckPoint: (id) => {
+    var ver = 0;
+    const arch = getCheckPoints();
+    var existingCheckPoints = arch.data.checkPoints;
+    var SpecificCheckPoint;
+    existingCheckPoints.forEach((checkPoint) => {
+      if ((checkPoint.id === id)) {
+        ver = 1;
+        SpecificCheckPoint = checkPoint;
+      }
+    });
+    if (ver == 0) {
+      throw new Error("Animal not found");
+    }
+    return SpecificCheckPoint;
+  },
+
   deleteCheckPoint: (uid) => {
     const existingCheckPoints = getCheckPoints();
     const updatedCheckPoints = existingCheckPoints.filter(

@@ -1,12 +1,31 @@
 {
   "data": {
-    "animals": [
+    "checkPoints": [
       {
-        "id": "BT3",
+        "id": "cee1f9bf-6e42-4071-859a-82d71e231cc1",
+        "lat": "-38.00042",
+        "long": "-57.5562.",
+        "description": "Zona de bebederos"
+      },
+      {
+        "id": "32c7e94b-2b08-4ff5-80e9-ecb0f7795425",
+        "lat": "-38.00042",
+        "long": "-57.5562.",
+        "description": "Zona de bebederos"
+      },
+      {
+        "id": "d5046589-a6be-4839-9454-f0ab184fa51a",
+        "lat": "-38.00042",
+        "long": "-57.5562.",
+        "description": "Zona de bebederos"
+      },
+      {
+        "id": "16bc808b-eb20-4aa9-8b3d-048fbf4c3025",
         "lat": "-38.00042",
         "long": "-57.5562.",
         "description": "Zona de bebederos"
       }
+
     ]
   }
 }

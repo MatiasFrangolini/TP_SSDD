@@ -23,6 +23,23 @@ export const animalService = {
     return getAnimals();
   },
 
+  getSpecificAnimal: (id) => {
+    var ver = 0;
+    const arch = getAnimals();
+    var existingAnimals = arch.data.animals;
+    var specificAnimal;
+    existingAnimals.forEach((animal) => {
+      if ((animal.id === id)) {
+        ver = 1;
+        specificAnimal = animal;
+      }
+    });
+    if (ver == 0) {
+      throw new Error("Animal not found");
+    }
+    return specificAnimal;
+  },
+
   deleteAnimal: (id) => {
     const arch = getAnimals();
     const existingAnimals = arch.data.animals;

@@ -21,7 +21,14 @@ export const addAnimal = (req, res) => {
 };
 
 export const getAllAnimals = (req, res) => {
-  const animals = animalService.getAllAnimals();
+  const parametros = req.url.split('/');
+  let animals;
+  if (parametros[3]){
+    const id = parametros[3]
+    animals = animalService.getSpecificAnimal(id);
+  } else {
+    animals = animalService.getAllAnimals();
+  }
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(animals));
 };
