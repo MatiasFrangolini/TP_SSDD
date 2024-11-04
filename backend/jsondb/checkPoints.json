@@ -1,11 +1,29 @@
 {
   "data": {
-    "animals": [
+    "checkPoints": [
       {
-        "id": "BT3",
+        "id": "MAC1",
         "lat": "-38.00042",
-        "long": "-57.5562.",
-        "description": "Zona de bebederos"
+        "long": "38.00042",
+        "description": "PATCHEAD"
+      },
+      {
+        "id": "MAC2",
+        "lat": "-38.00042",
+        "long": "e",
+        "description": "Zona de descanso"
+      },
+      {
+        "id": "MAC3",
+        "lat": "-38.00042",
+        "long": "e",
+        "description": "Zona de vacunacion"
+      },
+      {
+        "id": "MAC4",
+        "lat": "-38.00042",
+        "long": "e",
+        "description": "Zona de algo"
       }
     ]
   }

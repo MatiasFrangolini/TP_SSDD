@@ -11,6 +11,7 @@ import {
   addCheckPoint,
   deleteCheckPoint,
   getAllCheckPoints,
+  patchCheckPoint,
 } from "./controllers/checkPointController.js";
 
 const server = http.createServer((req, res) => {
@@ -49,6 +50,8 @@ const server = http.createServer((req, res) => {
       addCheckPoint(req, res);
     } else if (req.method === "DELETE") {
       deleteCheckPoint(req, res);
+    } else if (req.method === "PATCH"){
+      patchCheckPoint(req, res);
     } else {
       res.writeHead(404, "Ruta no encontrada");
       res.end();
