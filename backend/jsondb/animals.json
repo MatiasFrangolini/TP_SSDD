@@ -3,8 +3,8 @@
     "animals": [
       {
         "id": "BT3",
-        "name": "Vaca inside",
-        "description": "descripcion updateada"
+        "name": "patch",
+        "description": "descripcion patcheada"
       },
       {
         "id": "BT1",
@@ -15,16 +15,6 @@
         "id": "1234124",
         "name": "asdasd",
         "description": "asdasd"
-      },
-      {
-        "id": "12412313414314",
-        "name": "afsdsdfdfasafdsa",
-        "description": "sdfgaasdggasdfa"
-      },
-      {
-        "id": "123",
-        "name": "Pedro Iarritu",
-        "description": "ufugugy"
       }
     ]
   }

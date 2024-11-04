@@ -53,14 +53,19 @@ export const animalService = {
   },
 
   patchAnimal: (id, animalData) => {
+    if (!animalData.name && !animalData.description){
+      throw new Error("Body is empty");
+    } else {
     var ver = 0;
     const arch = getAnimals();
     var existingAnimals = arch.data.animals;
     existingAnimals.forEach((animal) => {
-      if ((animal.id = id)) {
+      if ((animal.id === id)) {
         ver = 1;
-        animal.name = animalData.name;
-        animal.description = animalData.description;
+        if (animalData.name)
+          animal.name = animalData.name;
+        if (animalData.description)
+          animal.description = animalData.description;
       }
     });
     if (ver == 0) {
@@ -68,5 +73,6 @@ export const animalService = {
     }
 
     writeAnimals(existingAnimals);
+  }
   },
 };

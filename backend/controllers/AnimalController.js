@@ -9,11 +9,11 @@ export const addAnimal = (req, res) => {
     try {
       const parsedBody = JSON.parse(body);
       const newAnimal = animalService.addAnimal(parsedBody);
-
       res.writeHead(201, { "Content-Type": "application/json" });
       res.end(JSON.stringify(newAnimal));
+      
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       res.writeHead(400, "Invalid request!");
       res.end();
     }
@@ -61,6 +61,7 @@ export const patchAnimal = (req, res) => {
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Animal updated successfully" }));
     } catch (error) {
+      console.log(error.message);
       res.writeHead(400, "Invalid request!");
       res.end();
     }

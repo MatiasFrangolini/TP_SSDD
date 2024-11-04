@@ -14,5 +14,10 @@ export const getCheckPoints = () => {
 };
 
 export const writeCheckPoints = (checkPoints) => {
-  writeFileSync(FILE_PATH, JSON.stringify(checkPoints, null, 2));
+  const dataToWrite = {
+    data: {
+      checkPoints: checkPoints
+    }
+  };
+  writeFileSync(FILE_PATH, JSON.stringify(dataToWrite, null, 2));
 };
