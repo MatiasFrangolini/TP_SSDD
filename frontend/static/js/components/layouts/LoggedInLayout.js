@@ -21,7 +21,7 @@ export default class LoggedInLayout {
             </div>
         </nav>
 
-        <div id="layout-content" class= "items-center justify-center h-screen">
+        <div id="layout-content" class= "items-center justify-center h-screen bg-gray-300">
         </div>
     `;
     this.container.innerHTML = layoutHtml;

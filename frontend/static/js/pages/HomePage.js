@@ -23,13 +23,21 @@ export default class HomePage {
 
   render() {
     let animalsHtml = `
-        <h3 class="bg-gray text-center my-8 font-bold text-2xl">Animales disponibles:</h3>
-        <div class="grid grid-cols-4 gap-4">
+      <h3 class="bg-gray text-center my-8 font-bold text-2xl">Animales disponibles:</h3>
+      <div class="grid grid-cols-4 gap-4">
     `;
-    this.animals?.forEach((animal) => {
-      animalsHtml += new AnimalItem(animal).render();
+
+    // Creamos los objetos AnimalItem y los almacenamos en una lista
+    this.animalItems = this.animals?.map((animal) => {
+      const animalItem = new AnimalItem(animal);
+      animalsHtml += animalItem.render(); // Añadimos el HTML de cada animal al DOM
+      return animalItem;
     });
+
     animalsHtml += "</div>";
     this.container.innerHTML = animalsHtml;
+
+    // Agregamos los listeners de eliminación después de renderizar el HTML
+    this.animalItems.forEach((animalItem) => animalItem.addListenerDelete());
   }
 }
