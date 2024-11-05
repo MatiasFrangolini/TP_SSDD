@@ -15,6 +15,7 @@ export default class LoggedInLayout {
                     <a href="/addAnimal" id="addAnimal" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Agregar animal</a>
                     <a href="/checkpoints" id="checkpoints" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
                     <a href="/addCheckpoint" id="addCheckpoint" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Agregar checkpoint</a>
+                    <a href="/" id="cerrarSesion" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Cerrar sesion</a>
                   </div>
                 </div>
               </div>

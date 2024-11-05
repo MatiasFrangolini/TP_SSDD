@@ -21,7 +21,6 @@ export default class CheckPointEditFormPage {
       const long = event.target.elements.long.value.trim();
       const description = event.target.elements.description.value.trim();
       await checkPointsAPIHelper.addCheckPoint({id, lat, long, description });
-      console.log("entra al add");
       alert("Checkpoint agregado exitosamente!");
       navigateTo("/checkpoints");
       window.removeEventListener("submit", this.handleSubmit);
