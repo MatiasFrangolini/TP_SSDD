@@ -17,7 +17,7 @@ export default class AnimalsApiHelper {
   }
 
   static async editAnimal(animalData) {
-    const response = await axios.patch(API_ROUTES.ANIMALS, animalData);
+    const response = await axios.patch(`${API_ROUTES.ANIMALS}/${animalData.id}`, {name: animalData.name, description: animalData.description});
     return response.data;
   }
 

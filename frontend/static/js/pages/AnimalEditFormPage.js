@@ -5,7 +5,6 @@ export default class AnimalEditFormPage {
   constructor(selector, id) {
     this.container = document.getElementById(selector);
     this.loadForm(id);
-    console.log(id);
   }
 
   async loadForm(id) {
@@ -27,16 +26,14 @@ export default class AnimalEditFormPage {
   async handleSubmit(event) {
     try {
       event.preventDefault();
-      console.log("entra aca");
       const id = event.target.elements.bluetooth.value.trim();
       const name = event.target.elements.name.value.trim();
       const description = event.target.elements.description.value.trim();
-      console.log(id);
       //validateNewAnimal({bluetoothId,name, description });
-      await AnimalsApiHelper.editAnimal({ id, name, description });
+      await AnimalsApiHelper.editAnimal({id, name, description });
       alert("Animal editado exitosamente!");
       navigateTo("/");
-      window.removeEventListener("submit-edit", this.handleSubmit);
+      window.removeEventListener("submit", this.handleSubmit);
     } catch (e) {
       console.log(e);
       alert("Error editando Animal");
@@ -44,7 +41,7 @@ export default class AnimalEditFormPage {
   }
 
   addListener() {
-    window.addEventListener("submit-edit", this.handleSubmit);
+    window.addEventListener("submit", this.handleSubmit);
   }
 
   render(data) {
@@ -64,7 +61,7 @@ export default class AnimalEditFormPage {
                 <label for="description" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Descripcion:</label>
                 <textarea id="description" name="description" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 resize-none" id="inline-full-name" required>${data.description}</textarea>
             </div>
-            <button type="submit-edit" form="animal-edit-form" class="edit-form-submit-button shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Editar</button>
+            <button type="submit" form="animal-edit-form" class="edit-form-submit-button shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Editar</button>
         </form>
         </div>
     `;
