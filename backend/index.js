@@ -15,17 +15,15 @@ import {
 } from "./controllers/checkPointController.js";
 
 const server = http.createServer((req, res) => {
-  // Configuración de encabezados CORS
-  res.setHeader("Access-Control-Allow-Origin", "*"); // Permitir todos los orígenes (cambiar '*' por un origen específico si es necesario)
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PATCH, DELETE, OPTIONS"
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Manejo de solicitudes OPTIONS (pre-flight para CORS)
   if (req.method === "OPTIONS") {
-    res.writeHead(204); // Respuesta sin contenido para solicitudes OPTIONS
+    res.writeHead(204); 
     res.end();
     return;
   }
@@ -43,7 +41,7 @@ const server = http.createServer((req, res) => {
       res.writeHead(404, "Ruta no encontrada");
       res.end();
     }
-  } else if (req.url.startsWith("/api/controls")) {
+  } else if (req.url.startsWith("/api/checkpoints")) {
     if (req.method === "GET") {
       getAllCheckPoints(req, res);
     } else if (req.method === "POST") {

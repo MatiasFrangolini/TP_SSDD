@@ -16,5 +16,13 @@ export default class AnimalsApiHelper {
     return response.data;
   }
 
-  static async getAnimalById(id) {}
+  static async editAnimal(animalData) {
+    const response = await axios.patch(API_ROUTES.ANIMALS, animalData);
+    return response.data;
+  }
+
+  static async getAnimalById(id) {
+    const response = await axios.get(`${API_ROUTES.ANIMALS}/${id}`);
+    return response.data;
+  }
 }

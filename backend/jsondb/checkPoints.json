@@ -24,6 +24,12 @@
         "lat": "-38.00042",
         "long": "e",
         "description": "Zona de algo"
+      },
+      {
+        "id": "MACXD",
+        "lat": "-39.00042",
+        "long": "39.00042",
+        "description": "Prueba"
       }
     ]
   }

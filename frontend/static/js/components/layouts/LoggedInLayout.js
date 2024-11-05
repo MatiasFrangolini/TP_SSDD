@@ -12,8 +12,8 @@ export default class LoggedInLayout {
                   <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                       <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Animals</a>
-                      <a href="/add" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Add Animal</a>
-                      <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
+                      <a href="/addAnimal" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Add Animal</a>
+                      <a href="/checkpoints" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
                     </div>
                   </div>
                 </div>

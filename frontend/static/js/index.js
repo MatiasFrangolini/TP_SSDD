@@ -1,6 +1,7 @@
 import HomePage from "./pages/HomePage.js";
 import AnimalFormPage from "./pages/AnimalFormPage.js";
 import LoggedInLayout from "./components/layouts/LoggedInLayout.js";
+import AnimalEditFormPage from "./pages/AnimalEditFormPage.js";
 
 export const navigateTo = (url) => {
   window.history.pushState({}, "", url);
@@ -30,9 +31,14 @@ function loadPage() {
   loadLayout();
   if (location.pathname === "/") {
     new HomePage("layout-content");
-  } else if (location.pathname === "/add") {
+  } else if (location.pathname === "/addAnimal") {
     new AnimalFormPage("layout-content");
-  } /*else if (location.pathname === "/login") {
+  } else if (location.pathname === "/checkpoints") {
+    
+  } else if (location.pathname.startsWith("/editAnimal")) {
+    const id = location.pathname.split("/")[2];
+    new AnimalEditFormPage("layout-content", id);
+  }/*else if (location.pathname === "/login") {
     new LoginPage("layout-content");
   }*/
 }

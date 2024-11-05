@@ -2,19 +2,14 @@
   "data": {
     "animals": [
       {
-        "id": "1234124",
-        "name": "asdasd",
-        "description": "asdasd"
-      },
-      {
         "id": "b1",
         "name": "berni",
         "description": "inside"
       },
       {
-        "id": "b12",
-        "name": "Chupete",
-        "description": "inside"
+        "id": "123123123123",
+        "name": "asdesdg",
+        "description": "asfdagahaahaha"
       }
     ]
   }

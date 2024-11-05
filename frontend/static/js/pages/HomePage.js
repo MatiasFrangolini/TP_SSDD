@@ -38,6 +38,7 @@ export default class HomePage {
     this.container.innerHTML = animalsHtml;
 
     // Agregamos los listeners de eliminación después de renderizar el HTML
-    this.animalItems.forEach((animalItem) => animalItem.addListenerDelete());
+    this.animalItems.forEach((animalItem) => animalItem.addListeners());
+    
   }
 }
