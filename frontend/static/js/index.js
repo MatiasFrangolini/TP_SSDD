@@ -3,6 +3,8 @@ import AnimalFormPage from "./pages/AnimalFormPage.js";
 import LoggedInLayout from "./components/layouts/LoggedInLayout.js";
 import AnimalEditFormPage from "./pages/AnimalEditFormPage.js";
 import CheckPointPage from "./pages/CheckPointPage.js";
+import CheckPointEditFormPage from "./pages/CheckPointEditFormPage.js";
+import CheckPointFormPage from "./pages/CheckPointFormPage.js";
 
 export const navigateTo = (url) => {
   window.history.pushState({}, "", url);
@@ -36,11 +38,14 @@ function loadPage() {
     new AnimalFormPage("layout-content");
   } else if (location.pathname === "/checkpoints") {
     new CheckPointPage("layout-content");
+  } else if (location.pathname === "/addCheckpoint") {
+    new CheckPointFormPage("layout-content");
   } else if (location.pathname.startsWith("/editAnimal")) {
     const id = location.pathname.split("/")[2];
     new AnimalEditFormPage("layout-content", id);
-  }else if (location.pathname === "/editCheckPoint") {
-    new LoginPage("layout-content");
+  }else if (location.pathname.startsWith("/editCheckPoint")) {
+    const id = location.pathname.split("/")[2];
+    new CheckPointEditFormPage("layout-content", id);
   }
 }
 

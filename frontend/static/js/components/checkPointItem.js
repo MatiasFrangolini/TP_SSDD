@@ -11,9 +11,8 @@ export default class CheckPointItem {
 
   async deleteCheckPoint(id) {
     try {
-      console.log("elimine");
       await checkPointsAPIHelper.deleteCheckPoint(id);
-      navigateTo("/");
+      navigateTo("/checkpoints");
     } catch (e) {
       console.log(e);
       alert("Error eliminando Animal");
@@ -34,13 +33,11 @@ export default class CheckPointItem {
     const buttonEdit = document.getElementById(`edit-${this.id}`);
     if (buttonDelete) {
       buttonDelete.addEventListener("click", () => {
-        console.log("Botón de eliminar presionado para:", this.id);
         this.deleteCheckPoint(this.id);
       });
     }
     if (buttonEdit) {
       buttonEdit.addEventListener("click", () => {
-        console.log("Botón de editar presionado para:", this.id);
         this.editCheckPoint(this.id);
       });
     }

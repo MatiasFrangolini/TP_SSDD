@@ -5,13 +5,7 @@
         "id": "00:1B:44:11:3A:B7",
         "lat": "-38.00042",
         "long": "38.00042",
-        "description": "PATCHEAD"
-      },
-      {
-        "id": "MAC2",
-        "lat": "-38.00042",
-        "long": "e",
-        "description": "Zona de descanso"
+        "description": "Editadoo"
       },
       {
         "id": "MAC3",
@@ -23,13 +17,19 @@
         "id": "MAC4",
         "lat": "-38.00042",
         "long": "e",
-        "description": "Zona de algo"
+        "description": "Zona de algo xd"
       },
       {
         "id": "MACXD",
         "lat": "-39.00042",
         "long": "39.00042",
         "description": "Prueba"
+      },
+      {
+        "id": "MACdonalds",
+        "lat": "1",
+        "long": "2",
+        "description": "una buena pruebaa"
       }
     ]
   }

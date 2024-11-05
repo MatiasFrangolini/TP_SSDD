@@ -35,8 +35,8 @@ export const getAllCheckPoints = (req, res) => {
 };
 
 export const deleteCheckPoint = (req, res) => {
- const parametros = req.url.split('/');
- const id = parametros [3];
+  const parametros = req.url.split('/');
+  const id = parametros [3];
   try {
       checkPointService.deleteCheckPoint(id);
 

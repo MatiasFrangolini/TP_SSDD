@@ -6,19 +6,20 @@ export default class LoggedInLayout {
   render() {
     const layoutHtml = `
         <nav class="bg-gray-800">
-            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-              <div class="relative flex h-16 items-center justify-between">
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div class="hidden sm:ml-6 sm:block">
-                    <div class="flex space-x-4">
-                      <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Animals</a>
-                      <a href="/addAnimal" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Add Animal</a>
-                      <a href="/checkpoints" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
-                    </div>
+          <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+              <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="hidden sm:ml-6 sm:block">
+                  <div class="flex space-x-4">
+                    <a href="/" id="home" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Animales</a>
+                    <a href="/addAnimal" id="addAnimal" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Agregar animal</a>
+                    <a href="/checkpoints" id="checkpoints" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
+                    <a href="/addCheckpoint" id="addCheckpoint" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Agregar checkpoint</a>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </nav>
 
         <div id="layout-content" class= "items-center justify-center h-screen bg-gray-300">

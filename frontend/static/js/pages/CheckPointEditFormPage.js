@@ -9,7 +9,6 @@ export default class CheckPointEditFormPage {
 
   async loadForm(id) {
     const data = await this.getData(id);
-    console.log(data);
     this.render(data);
     this.addListener();
   }
@@ -26,7 +25,7 @@ export default class CheckPointEditFormPage {
   async handleSubmit(event) {
     try {
       event.preventDefault();
-      const id = event.target.elements.bluetooth.value.trim();
+      const id = event.target.elements.idMac.value.trim();
       const lat = event.target.elements.lat.value.trim();    
       const long = event.target.elements.long.value.trim();
       const description = event.target.elements.description.value.trim();
@@ -48,18 +47,18 @@ export default class CheckPointEditFormPage {
     const formHtml = `
         <div class= "flex flex-col items-center h-screen my-8">
         <form id="checkpoint-edit-form" class="w-1/4">
-            <h2 class="text-2xl my-4 font-bold">Editar animal</h2>
+            <h2 class="text-2xl my-4 font-bold">Editar checkpoint</h2>
             <div class="input-container flex flex-col my-2">
-                <label for="bluetooth" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Bluetooth id:</label>
-                <input type="text" id="bluetooth" value="${data.id}" name="bluetooth" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" disabled>
+                <label for="bluetooth" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Direccion MAC:</label>
+                <input type="text" id="idMac" value="${data.id}" name="idMac" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" disabled>
             </div>
             <div class="input-container flex flex-col my-2">
-                <label for="name" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Nombre:</label>
-                <input type="text" id="lat" value="${data.lat}" name="lat" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" required>
+                <label for="name" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Latitud:</label>
+                <input type="text" id="lat" value="${data.lat}" name="lat" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" disabled>
             </div>
             <div class="input-container flex flex-col my-2">
-                <label for="name" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Nombre:</label>
-                <input type="text" id="long" value="${data.long}" name="long" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" required>
+                <label for="name" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Longitud:</label>
+                <input type="text" id="long" value="${data.long}" name="long" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" disabled>
             </div>
             <div class="input-container flex flex-col my-2">
                 <label for="description" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Descripcion:</label>
