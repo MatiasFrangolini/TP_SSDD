@@ -1,11 +1,10 @@
 import http from "http";
-const HTTP_PORT = 3000;
 import {
   addAnimal,
   deleteAnimal,
   getAllAnimals,
   patchAnimal,
-} from "./controllers/animalController.js";
+} from "./controllers/AnimalController.js";
 
 import {
   addCheckPoint,
@@ -13,6 +12,11 @@ import {
   getAllCheckPoints,
   patchCheckPoint,
 } from "./controllers/checkPointController.js";
+
+import { AuthController } from "./controllers/AuthController.js";
+import { authenticate } from "./middlewares/authMiddleware.js";
+
+const HTTP_PORT = 3000;
 
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -27,8 +31,15 @@ const server = http.createServer((req, res) => {
     res.end();
     return;
   }
+  const authController = new AuthController();
 
   if (req.url.startsWith("/api/animals")) {
+    const isAuth = authenticate(req, res);
+    if (!isAuth) {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'No autorizado' }));
+      return;
+    }
     if (req.method === "GET") {
       getAllAnimals(req, res);
     } else if (req.method === "POST") {
@@ -54,10 +65,18 @@ const server = http.createServer((req, res) => {
       res.writeHead(404, "Ruta no encontrada");
       res.end();
     }
+  } else if (req.url.startsWith("/api/login")) {
+    if (req.method === "POST") {
+      authController.login(req, res);
+    }
+  } else if (req.url.startsWith("/api/refresh")) {
+    if (req.method === "POST") {
+      authController.refresh(req, res);
+    }
   } else {
     res.writeHead(404, "Ruta no encontrada");
     res.end();
-  }
+  } 
 });
 
 server.listen(HTTP_PORT, () => {

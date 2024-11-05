@@ -14,24 +14,30 @@ export const navigateTo = (url) => {
 const route = (event) => {
   event = event || window.event;
   event.preventDefault();
-
-  navigateTo(event.target.href);
+  const isAuth = !!AuthStateHelper.getAccessToken();
+    if (!isAuth && event.target.href !== '/login') {
+        navigateTo('/login');
+    } else {
+        navigateTo(event.target.href);
+    }
 };
 
 function loadLayout() {
-  /*
   const isAuth = !!AuthStateHelper.getAccessToken();
   if (isAuth) {
       new LoggedInLayout("container");
       return;
   }
   new AuthLayout("container");
-  */
-  new LoggedInLayout("container");
 }
 
 function loadPage() {
   loadLayout();
+  const isAuth = !!AuthStateHelper.getAccessToken();
+  if (!isAuth) {
+      history.pushState({}, "", "/login");
+      return new LoginPage('layout-content');
+  }
   if (location.pathname === "/") {
     new HomePage("layout-content");
   } else if (location.pathname === "/addAnimal") {
@@ -43,7 +49,7 @@ function loadPage() {
   } else if (location.pathname.startsWith("/editAnimal")) {
     const id = location.pathname.split("/")[2];
     new AnimalEditFormPage("layout-content", id);
-  }else if (location.pathname.startsWith("/editCheckPoint")) {
+  } else if (location.pathname.startsWith("/editCheckPoint")) {
     const id = location.pathname.split("/")[2];
     new CheckPointEditFormPage("layout-content", id);
   }
