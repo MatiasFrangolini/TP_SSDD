@@ -14,7 +14,7 @@ import {
 } from "./controllers/checkPointController.js";
 
 import { AuthController } from "./controllers/AuthController.js";
-import { authenticate } from "./middlewares/authMiddleware.js";
+import { authenticate } from "./middleware/AuthMiddleware.js";
 
 const HTTP_PORT = 3000;
 
@@ -32,6 +32,7 @@ const server = http.createServer((req, res) => {
     return;
   }
   const authController = new AuthController();
+  console.log(req.url);
 
   if (req.url.startsWith("/api/animals")) {
     const isAuth = authenticate(req, res);
@@ -53,6 +54,12 @@ const server = http.createServer((req, res) => {
       res.end();
     }
   } else if (req.url.startsWith("/api/checkpoints")) {
+    const isAuth = authenticate(req, res);
+    if (!isAuth) {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'No autorizado' }));
+      return;
+    }
     if (req.method === "GET") {
       getAllCheckPoints(req, res);
     } else if (req.method === "POST") {
@@ -67,6 +74,7 @@ const server = http.createServer((req, res) => {
     }
   } else if (req.url.startsWith("/api/login")) {
     if (req.method === "POST") {
+      console.log("login");
       authController.login(req, res);
     }
   } else if (req.url.startsWith("/api/refresh")) {

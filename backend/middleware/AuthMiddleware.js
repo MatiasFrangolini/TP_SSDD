@@ -5,7 +5,7 @@ export const authenticate = (req, res, next) => {
   const secret = process.env.JWT_SECRET;
 
   if (!tokenHeader) {
-    return res.status(401).send('Access Denied. No token provided.');
+    return res.status(401).send('Acceso denegado. Sin token.');
   }
 
   try {
@@ -14,8 +14,8 @@ export const authenticate = (req, res, next) => {
     next();
   } catch (error) {
     if (error?.name === "TokenExpiredError") {
-      return res.status(401).send('Token expired.');
+      return res.status(401).send('Token expirado.');
     }
-    return res.status(400).send('Invalid Token.');
+    return res.status(400).send('Token invalido.');
   }
 };

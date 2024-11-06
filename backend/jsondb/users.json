@@ -1,0 +1,27 @@
+[
+  {
+    "id": "a3bad91d-dfeb-4528-95da-19b5991af276",
+    "name": "Martin Ignacio Casas",
+    "roles": [
+      "user",
+      "admin"
+    ],
+    "password": "$2b$10$sUHQziS.ODUTmS7/hWzQr.yWg/Ly6.ow60XwVRuypt9yxAA/gvH.K"
+  },
+  {
+    "id": "919103a2-d908-4d92-be5b-7156a5d86502",
+    "password": "password123"
+  },
+  {
+    "id": "6a2fce60-2332-4c38-8fae-395b1619a67e",
+    "password": "password123"
+  },
+  {
+    "id": "e4a55852-6bed-428e-9ba3-b2529089e611",
+    "password": "password123"
+  },
+  {
+    "id": "caec07b8-99b6-4bc5-be97-81f7b8333c6d",
+    "password": "password123"
+  }
+]
