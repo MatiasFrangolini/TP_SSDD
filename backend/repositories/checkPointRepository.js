@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 
 export const FILE_PATH = "./jsondb/checkPoints.json";
 
+export let animals = [];
 export const getCheckPoints = () => {
   const fileExist = existsSync(FILE_PATH);
   if (fileExist) {
@@ -21,3 +22,4 @@ export const writeCheckPoints = (checkPoints) => {
   };
   writeFileSync(FILE_PATH, JSON.stringify(dataToWrite, null, 2));
 };
+

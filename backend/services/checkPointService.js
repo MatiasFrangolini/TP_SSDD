@@ -2,6 +2,7 @@ import { patchCheckPoint } from "../controllers/checkPointController.js";
 import {
   getCheckPoints as getCheckPoints,
   writeCheckPoints as writeCheckPoints,
+  animals as animals
 } from "../repositories/checkPointRepository.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -47,7 +48,7 @@ export const checkPointService = {
       }
     });
     if (ver == 0) {
-      throw new Error("Animal not found");
+      throw new Error("Checkpoint not found");
     }
     return SpecificCheckPoint;
   },
@@ -89,6 +90,12 @@ export const checkPointService = {
     }
   }
   writeCheckPoints(existingCheckPoints);
+  },
+  setAnimalsInCheckpoint(checkpointId, animals){
+    const checkpoint = getSpecificCheckPoint(checkpointId);
+    if (checkpoint) {
+      checkpoint.animals = animals;
+    }
   },
 };
 
