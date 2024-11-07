@@ -4,18 +4,20 @@
 #include <BLEUtils.h>
 #include <BLEScan.h>
 #include <BLEAdvertisedDevice.h>
+#include <ArduinoJson.h>
 
 // Constants
 const char* ssid = "WifiChupete";
 const char* password = "12345678";
 const char* mqtt_server = "192.168.43.46";
 const int mqtt_port = 1883;
+const char* checkpointID = "macWemos";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 BLEScan* pBLEScan;
-const int scanTime = 10; // In seconds
+const int scanTime = 5; // In seconds
 
 void setup() {
   Serial.begin(115200);
@@ -50,22 +52,28 @@ void loop() {
   // Scan for Bluetooth devices
   Serial.println("Scanning for BLE devices...");
   BLEScanResults * foundDevices = pBLEScan->start(scanTime, false);
-  String devices = "";
+
+  DynamicJsonDocument doc(1024); // Cambiar el tamaño por si no entra el buffer
+  doc["checkpointID"] = checkpointID;
 
   // Loop through found devices
 for (int i = 0; i < foundDevices->getCount(); i++) {
     BLEAdvertisedDevice device = foundDevices->getDevice(i);
-    devices += "Device " + String(i + 1) + ": " + device.getName().c_str();
-    devices += " (" + String(device.getAddress().toString().c_str()) + ")\n";
+    if (device.getRSSI() >= -80) {
+      JsonObject animal = animals.createNestedObject();
+      animal["id"] = device.getAddress().toString().c_str();
+      animal["rssi"] = device.getRSSI();
+    }
   }
   
+  char* output;
+  serializeJson(doc, output);
   pBLEScan->clearResults(); // Clear scan results
 
-  // Publish the list of devices to the MQTT topic
   if (client.connected()) {
-    client.publish("devices", "hola"/*devices.c_str()*/);
+    client.publish("checkpoint", output.c_str());
     Serial.println("Published to MQTT:");
-    Serial.println(devices);
+    Serial.println(output.c_str());
   } else {
     Serial.println("MQTT connection lost. Attempting to reconnect...");
     if (client.connect("ESP32Client")) {
@@ -73,6 +81,6 @@ for (int i = 0; i < foundDevices->getCount(); i++) {
     }
   }
 
-  // Wait 10 seconds before next scan
-  delay(10000);
+  // Wait 5 seconds before next scan
+  delay(5000);
 }
