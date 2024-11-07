@@ -1,18 +1,33 @@
-import { getAllAnimals } from "../services/AnimalService.js";
-import { getSpecificCheckPoint, setAnimalsInCheckpoint } from "../services/checkPointService.js";
+import { animalService } from "../services/AnimalService.js";
+import { checkPointService } from "../services/checkPointService.js";
+
+export let availableDevices = [];
 
 const checkAnimalsMqtt = (animals) => {
-    const allAnimals = getAllAnimals();
+    const allAnimals = animalService.getAllAnimals().data.animals;
     let presentAnimals = [];
-    for (let i = 0; i < animals.length; i++) {
-        if (allAnimals.contains(animals[i].id)) {
-            presentAnimals.push(animals[i]);
+    animals.forEach(animal => {
+        if (!allAnimals.includes(animal)) {
+          presentAnimals.push(animal);
         }
-    };
+    });
     return presentAnimals;
 };
 
 
 export const updateAnimalsInCheckpoint = (checkpointId, animals) => {
-    setAnimalsInCheckpoint(checkpointId, checkAnimalsMqtt(animals));
+    checkPointService.setAnimalsInCheckpoint(checkpointId, checkAnimalsMqtt(animals));
+}
+
+export const updateDevicesList = (devices) => {
+    const allAnimals = animalService.getAllAnimals().data.animals;
+    devices.forEach(device => {
+        if (!availableDevices.includes(device.id) || !allAnimals.includes(device.id)) {
+          availableDevices.push(device.id);
+        }
+    });
+}
+
+export const getAllAvailableDevices = () => {
+    return availableDevices;
 }

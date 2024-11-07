@@ -1,4 +1,4 @@
-import { updateAnimalsInCheckpoint } from "../topicMqtt.js";
+import { updateAnimalsInCheckpoint, updateAnimalList } from "../mqttHelper.js";
 
 const mqtt = require("mqtt");
 const client = mqtt.connect("mqtt://192.168.43.46:1883");
@@ -24,8 +24,9 @@ client.on("message", (topic, message) => {
   const checkpointID = data.checkpointID;
   const animalsFiltered = data.animals.filter(animal => animal.RSSI >= -40);
   console.log(animalsFiltered);
-  // Aca habría que pegarle a la API con los id filtrados
+  
   updateAnimalsInCheckpoint(checkpointID, animalsFiltered);
+  updateDeviceList(animalsFiltered);
 });
 
 client.on('error', (error) => {

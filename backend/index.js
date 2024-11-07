@@ -1,4 +1,4 @@
-import http from "http";
+import http, { get } from "http";
 const HTTP_PORT = 3000;
 import {
   addAnimal,
@@ -13,6 +13,8 @@ import {
   getAllCheckPoints,
   patchCheckPoint,
 } from "./controllers/checkPointController.js";
+
+import { getAvailableDevices } from "./controllers/mqttController.js";
 
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -54,7 +56,11 @@ const server = http.createServer((req, res) => {
       res.writeHead(404, "Ruta no encontrada");
       res.end();
     }
-  } else {
+  } else if (req.url.startsWith("/api/availableDevices")) {
+    if (req.method === "GET") {
+      getAvailableDevices(req, res);
+    }
+  }else {
     res.writeHead(404, "Ruta no encontrada");
     res.end();
   }

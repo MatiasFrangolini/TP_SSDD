@@ -2,13 +2,13 @@ import AnimalsApiHelper from "../helper/api/AnimalsApiHelper.js";
 import { navigateTo } from "../index.js";
 
 export default class AnimalFormPage {
-  constructor(selector) {
+  constructor(selector, id) {
     this.container = document.getElementById(selector);
-    this.loadForm();
+    this.loadForm(id);
   }
 
-  async loadForm() {
-    this.render();
+  async loadForm(id) {
+    this.render(id);
     this.addListener();
   }
 
@@ -33,14 +33,14 @@ export default class AnimalFormPage {
     window.addEventListener("submit", this.handleSubmit);
   }
 
-  render() {
+  render(id) {
     const formHtml = `
         <div class= "flex flex-col items-center h-screen my-8">
         <form id="animal-form" class="w-1/4">
             <h2 class="text-2xl my-4 font-bold">Nuevo animal</h2>
             <div class="input-container flex flex-col my-2">
                 <label for="bluetooth" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Bluetooth id:</label>
-                <input type="text" id="bluetooth" name="bluetooth" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" required>
+                <input type="text" value="${id}" id="bluetooth" name="bluetooth" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" disabled>
             </div>
             <div class="input-container flex flex-col my-2">
                 <label for="name" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Nombre:</label>

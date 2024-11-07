@@ -23,7 +23,7 @@ export default class HomePage {
 
   render() {
     let animalsHtml = `
-      <h3 class="bg-gray text-center my-8 font-bold text-2xl">Animales disponibles:</h3>
+      <h3 class="bg-gray text-center my-8 font-bold text-2xl">Animales registrados:</h3>
       <div class="grid grid-cols-4 gap-4">
     `;
 

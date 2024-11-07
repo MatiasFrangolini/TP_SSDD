@@ -90,6 +90,12 @@ export const checkPointService = {
   }
   writeCheckPoints(existingCheckPoints);
   },
+  setAnimalsInCheckpoint(checkpointId, newAnimals){
+    const checkpoint = getSpecificCheckPoint(checkpointId);
+    if (checkpoint) {
+      checkpoint.animals = newAnimals;
+    }
+  },
 };
 
 

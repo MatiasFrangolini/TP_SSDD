@@ -2,34 +2,28 @@
   "data": {
     "checkPoints": [
       {
-        "id": "00:1B:44:11:3A:B7",
-        "lat": "-38.00042",
-        "long": "38.00042",
-        "description": "Editadoo"
+        "id": "cee1f9bf-6e42-4071-859a-82d71e231cc1",
+        "lat": "-38.010497",
+        "long": "-57.641480",
+        "description": "Zona 1"
       },
       {
-        "id": "MAC3",
-        "lat": "-38.00042",
-        "long": "e",
-        "description": "Zona de vacunacion"
+        "id": "32c7e94b-2b08-4ff5-80e9-ecb0f7795425",
+        "lat": "-38.010226",
+        "long": "-57.638669",
+        "description": "Zona 2"
       },
       {
-        "id": "MAC4",
-        "lat": "-38.00042",
-        "long": "e",
-        "description": "Zona de algo xd"
+        "id": "d5046589-a6be-4839-9454-f0ab184fa51a",
+        "lat": "-38.011663",
+        "long": "-57.638390",
+        "description": "Zona 3"
       },
       {
-        "id": "MACXD",
-        "lat": "-39.00042",
-        "long": "39.00042",
-        "description": "Prueba"
-      },
-      {
-        "id": "MACdonalds",
-        "lat": "1",
-        "long": "2",
-        "description": "una buena pruebaa"
+        "id": "16bc808b-eb20-4aa9-8b3d-048fbf4c3025",
+        "lat": "-38.011891",
+        "long": "-57.641072",
+        "description": "Zona 4"
       }
     ]
   }

@@ -4,7 +4,7 @@ import LoggedInLayout from "./components/layouts/LoggedInLayout.js";
 import AnimalEditFormPage from "./pages/AnimalEditFormPage.js";
 import CheckPointPage from "./pages/CheckPointPage.js";
 import CheckPointEditFormPage from "./pages/CheckPointEditFormPage.js";
-import CheckPointFormPage from "./pages/CheckPointFormPage.js";
+import AvailableDevicesPage from "./pages/AvailableDevicesPage.js";
 
 export const navigateTo = (url) => {
   window.history.pushState({}, "", url);
@@ -34,18 +34,19 @@ function loadPage() {
   loadLayout();
   if (location.pathname === "/") {
     new HomePage("layout-content");
-  } else if (location.pathname === "/addAnimal") {
-    new AnimalFormPage("layout-content");
+  } else if (location.pathname.startsWith("/addAnimal")) {
+    const id = location.pathname.split("/")[2];
+    new AnimalFormPage("layout-content", id);
   } else if (location.pathname === "/checkpoints") {
     new CheckPointPage("layout-content");
-  } else if (location.pathname === "/addCheckpoint") {
-    new CheckPointFormPage("layout-content");
   } else if (location.pathname.startsWith("/editAnimal")) {
     const id = location.pathname.split("/")[2];
     new AnimalEditFormPage("layout-content", id);
   }else if (location.pathname.startsWith("/editCheckPoint")) {
     const id = location.pathname.split("/")[2];
     new CheckPointEditFormPage("layout-content", id);
+  } else if (location.pathname === "/availableDevices") {
+    new AvailableDevicesPage("layout-content");
   }
 }
 

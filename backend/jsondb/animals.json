@@ -15,6 +15,11 @@
         "id": "312312312",
         "name": "Mati",
         "description": "hola"
+      },
+      {
+        "id": "11:5e:e7:84:c4:f6",
+        "name": "Vaquita",
+        "description": "Vaca prueba"
       }
     ]
   }
