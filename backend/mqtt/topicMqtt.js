@@ -1,19 +1,16 @@
-import { updateAnimalsInCheckpoint, updateDeviceList } from "../mqtt/mqttHelper.js";
+import { updateAnimalsInCheckpoint, updateDeviceList, addCheckPoint } from "../mqtt/mqttHelper.js";
 
 const mqtt = require("mqtt");
 const client = mqtt.connect("mqtt://192.168.43.46:1883");
 const topic = "checkpoint";
 
+let checkPoints = [];
+
 client.on("connect", () => {
-  client.subscribe("devices", (err) => {
+  client.subscribe(topic, (err) => {
     if (!err) {
       console.log("Se ha conectado correctamente.")
     }
-    client.subscribe(topic, (err) => {
-      if (err) {
-          console.error("Error al suscribirse al tópico:", err);
-      }
-  });
   });
 });
 
@@ -24,8 +21,7 @@ client.on("message", (topic, message) => {
   const checkpointID = data.checkpointID;
   const animalsFiltered = data.animals.filter(animal => animal.RSSI >= -40);
   console.log(animalsFiltered);
-  
-  updateAnimalsInCheckpoint(checkpointID, animalsFiltered);
+  addCheckPoint(checkpointID, animalsFiltered);
   updateDeviceList(animalsFiltered);
 });
 

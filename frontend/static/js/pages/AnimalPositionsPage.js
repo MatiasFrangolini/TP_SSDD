@@ -1,4 +1,5 @@
 import checkPointsApiHelper from "../helper/api/checkPointsApiHelper.js";
+import mqttAPIHelper from "../helper/api/mqttAPIHelper.js";
 import PositionItem from "../components/PositionItem.js";
 import AnimalPositionsItem from "../components/AnimalPositionsItem.js";
 
@@ -11,7 +12,7 @@ export default class AnimalPositionsPage {
   async loadPositions() {
     try {
       if (!this.checkpoints || this.checkpoints?.length <= 0) {
-        const data = await checkPointsApiHelper.getCheckPoints();
+        const data = await mqttAPIHelper.getPositions();
         this.checkpoints = data.checkpoints;
       }
     } catch (e) {
@@ -29,7 +30,7 @@ export default class AnimalPositionsPage {
     `;
 
     this.positionItems = this.checkpoints?.map((checkPoint) => {
-      const positionItem = new PositionItem(checkPoint.description);
+      const positionItem = new PositionItem(checkPoint.id);
       checkPointsHtml += positionItem.render();
       this.animalPositionsItems = checkPoint.animals?.map((animal) => {
         const animalPositionsItem = new AnimalPositionsItem(animal.name, animal.description);

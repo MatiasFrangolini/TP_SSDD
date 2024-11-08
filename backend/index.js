@@ -17,7 +17,8 @@ import {
   patchCheckPoint,
 } from "./controllers/checkPointController.js";
 
-import { getAvailableDevices } from "./controllers/mqttController.js";
+import { getAvailableDevices, getCheckPointsAnimals } from "./controllers/mqttController.js";
+
 
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -63,7 +64,11 @@ const server = http.createServer((req, res) => {
     if (req.method === "GET") {
       getAvailableDevices(req, res);
     }
-  }else {
+  } else if (req.url.startsWith("api/animals/positions")) {
+    if (req.method === "GET") {
+      getCheckPointsAnimals(req, res);
+    }
+  } else {
     res.writeHead(404, "Ruta no encontrada");
     res.end();
   }

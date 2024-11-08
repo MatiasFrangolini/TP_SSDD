@@ -1,7 +1,9 @@
+import { CheckPoint } from "../repositories/checkPoint.js";
 import { animalService } from "../services/AnimalService.js";
 import { checkPointService } from "../services/checkPointService.js";
 
 export let availableDevices = [];
+export let checkPoints = [];
 
 const checkAnimalsMqtt = (animals) => {
     const allAnimals = animalService.getAllAnimals().data.animals;
@@ -30,4 +32,20 @@ export const updateDevicesList = (devices) => {
 
 export const getAllAvailableDevices = () => {
     return availableDevices;
+}
+
+export const addCheckPoint = (checkPointId, animals) => {
+    if (!checkPoints.includes(getSpecificCheckPoint(checkPointId))) {
+        checkPoints.push(new CheckPoint(checkPointId, animals));
+    } else {
+        getSpecificCheckPoint(checkPointId).setAnimals(animals);
+    }
+}
+
+const getSpecificCheckPoint = (id) => {
+    return checkPoints.find(elemento => elemento.id === id);
+}
+
+export const getCheckPointsWithAnimals = () => {
+    return checkPoints;
 }
