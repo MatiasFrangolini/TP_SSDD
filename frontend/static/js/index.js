@@ -39,8 +39,7 @@ function loadPage() {
     new CheckPointEditFormPage("layout-content", id);
   } else if (location.pathname === "/availableDevices") {
     new AvailableDevicesPage("layout-content");
-  } else if (location.pathname === "/animals/position") {
-    console.log("animals/position");
+  } else if (location.pathname === "/positions") {
     new AnimalPositionsPage("layout-content");
   }
 }

@@ -1,6 +1,6 @@
 
 export default class AnimalPositionsItem {
-  constructor({ name, description }) {
+  constructor(name, description) {
     this.name = name;
     this.description = description;
     this.vacaImgUrl = "./vaca.jpg";

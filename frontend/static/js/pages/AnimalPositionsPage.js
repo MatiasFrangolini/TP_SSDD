@@ -29,7 +29,7 @@ export default class AnimalPositionsPage {
     `;
 
     this.positionItems = this.checkpoints?.map((checkPoint) => {
-      const positionItem = new PositionItem(checkPoint.id);
+      const positionItem = new PositionItem(checkPoint.description);
       checkPointsHtml += positionItem.render();
       this.animalPositionsItems = checkPoint.animals?.map((animal) => {
         const animalPositionsItem = new AnimalPositionsItem(animal.name, animal.description);

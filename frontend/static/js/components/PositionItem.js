@@ -1,9 +1,9 @@
 
 
 export default class PositionItem {
-  constructor({ lat, long, description }) {
-    this.lat = lat;
-    this.long = long;
+  constructor(/*lat, long, */description) {
+    //this.lat = lat;
+    //this.long = long;
     this.description = description;
   }
 

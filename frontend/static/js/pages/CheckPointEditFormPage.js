@@ -29,7 +29,7 @@ export default class CheckPointEditFormPage {
       const lat = event.target.elements.lat.value.trim();    
       const long = event.target.elements.long.value.trim();
       const description = event.target.elements.description.value.trim();
-      await checkPointsAPIHelper.editCheckPoint({id, lat, long, description });
+      await checkPointsApiHelper.editCheckPoint({id, lat, long, description });
       alert("Checkpoint editado exitosamente!");
       navigateTo("/checkpoints");
       window.removeEventListener("submit", this.handleSubmit);
