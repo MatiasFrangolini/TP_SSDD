@@ -30,14 +30,14 @@ export default class HomePage {
     // Creamos los objetos AnimalItem y los almacenamos en una lista
     this.animalItems = this.animals?.map((animal) => {
       const animalItem = new AnimalItem(animal);
-      animalsHtml += animalItem.render(); // Añadimos el HTML de cada animal al DOM
+      animalsHtml += animalItem.render();
       return animalItem;
     });
 
     animalsHtml += "</div>";
     this.container.innerHTML = animalsHtml;
 
-    // Agregamos los listeners de eliminación después de renderizar el HTML
+    // Agregamos los listeners
     this.animalItems.forEach((animalItem) => animalItem.addListeners());
     
   }

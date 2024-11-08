@@ -1,4 +1,4 @@
-import checkPointsAPIHelper from "../helper/api/checkPointsAPIHelper.JS";
+import checkPointsAPIHelper from "../helper/api/checkPointsApiHelper.js";
 import { navigateTo } from "../index.js";
 
 export default class CheckPointItem {

@@ -1,4 +1,4 @@
-import checkPointsAPIHelper from "../helper/api/checkPointsAPIHelper.js";
+import checkPointsApiHelper from "../helper/api/checkPointsApiHelper.js";
 import { navigateTo } from "../index.js";
 
 export default class CheckPointEditFormPage {
@@ -15,7 +15,7 @@ export default class CheckPointEditFormPage {
 
   async getData(id) {
     try {
-      const data = await checkPointsAPIHelper.getCheckPointById(id);
+      const data = await checkPointsApiHelper.getCheckPointById(id);
       return data;
     } catch (e) {
       console.log(e);

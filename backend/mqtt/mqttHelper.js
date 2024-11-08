@@ -7,7 +7,7 @@ const checkAnimalsMqtt = (animals) => {
     const allAnimals = animalService.getAllAnimals().data.animals;
     let presentAnimals = [];
     animals.forEach(animal => {
-        if (!allAnimals.includes(animal)) {
+        if (allAnimals.includes(animal)) {
           presentAnimals.push(animal);
         }
     });

@@ -1,3 +1,4 @@
+import { get } from "http";
 import { patchCheckPoint } from "../controllers/checkPointController.js";
 import {
   getCheckPoints as getCheckPoints,
@@ -94,6 +95,12 @@ export const checkPointService = {
     const checkpoint = getSpecificCheckPoint(checkpointId);
     if (checkpoint) {
       checkpoint.animals = newAnimals;
+    }
+  },
+  getAnimalsInCheckpoint(checkpointId){
+    const checkpoint = getSpecificCheckPoint(checkpointId);
+    if (checkpoint) {
+      return checkpoint.animals;
     }
   },
 };

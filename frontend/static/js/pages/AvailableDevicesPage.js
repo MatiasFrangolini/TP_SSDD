@@ -29,7 +29,6 @@ export default class AvailableDevicesPage {
 
     // Creamos los objetos DeviceItem y los almacenamos en una lista
     this.deviceItems = this.devices?.map((device) => {
-      console.log(device);
       const deviceItem = new DeviceItem(device);
       devicesHtml += deviceItem.render();
       return deviceItem;

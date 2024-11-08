@@ -5,6 +5,7 @@ import AnimalEditFormPage from "./pages/AnimalEditFormPage.js";
 import CheckPointPage from "./pages/CheckPointPage.js";
 import CheckPointEditFormPage from "./pages/CheckPointEditFormPage.js";
 import AvailableDevicesPage from "./pages/AvailableDevicesPage.js";
+import AnimalPositionsPage from "./pages/AnimalPositionsPage.js";
 
 export const navigateTo = (url) => {
   window.history.pushState({}, "", url);
@@ -14,19 +15,10 @@ export const navigateTo = (url) => {
 const route = (event) => {
   event = event || window.event;
   event.preventDefault();
-
   navigateTo(event.target.href);
 };
 
 function loadLayout() {
-  /*
-  const isAuth = !!AuthStateHelper.getAccessToken();
-  if (isAuth) {
-      new LoggedInLayout("container");
-      return;
-  }
-  new AuthLayout("container");
-  */
   new LoggedInLayout("container");
 }
 
@@ -47,6 +39,9 @@ function loadPage() {
     new CheckPointEditFormPage("layout-content", id);
   } else if (location.pathname === "/availableDevices") {
     new AvailableDevicesPage("layout-content");
+  } else if (location.pathname === "/animals/position") {
+    console.log("animals/position");
+    new AnimalPositionsPage("layout-content");
   }
 }
 
