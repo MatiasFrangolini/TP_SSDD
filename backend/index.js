@@ -1,5 +1,8 @@
 import http, { get } from "http";
-const HTTP_PORT = 3000;
+import dotenv from "dotenv";
+dotenv.config();
+const HTTP_PORT = process.env.HTTP_PORT || 3000;
+
 import {
   addAnimal,
   deleteAnimal,

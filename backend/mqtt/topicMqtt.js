@@ -1,4 +1,4 @@
-import { updateAnimalsInCheckpoint, updateAnimalList } from "../mqttHelper.js";
+import { updateAnimalsInCheckpoint, updateDeviceList } from "../mqtt/mqttHelper.js";
 
 const mqtt = require("mqtt");
 const client = mqtt.connect("mqtt://192.168.43.46:1883");

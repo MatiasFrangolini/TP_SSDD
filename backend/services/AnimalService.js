@@ -7,7 +7,8 @@ export const animalService = {
     }
     let existingAnimals = getAnimals().data.animals;
     let nombre = " ";
-    if (animalData.name) nombre = animalData.name;
+    if (animalData.name) 
+      nombre = animalData.name;
     const newAnimal = {
       id: animalData.id,
       name: nombre,
