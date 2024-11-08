@@ -7,11 +7,12 @@
 #include <ArduinoJson.h>
 
 // Constants
-const char* ssid = "WifiChupete";
+const char* ssid = "WifiMati";
 const char* password = "12345678";
 const char* mqtt_server = "192.168.43.46";
 const int mqtt_port = 1883;
-const char* checkpointID = "macWemos";
+const size_t maxPayloadSize = 256;
+const size_t bufferSize = 2048;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -26,19 +27,19 @@ void setup() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.println("Connecting to WiFi...");
+    //Serial.println(F("Connecting to WiFi..."));
   }
-  Serial.println("Connected to WiFi");
+  Serial.println(F("Connected to WiFi"));
 
   // Connect to MQTT broker
   client.setServer(mqtt_server, mqtt_port);
   while (!client.connected()) {
-    Serial.println("Connecting to MQTT...");
+    //Serial.println(F("Connecting to MQTT..."));
     if (client.connect("ESP32Client")) {
-      Serial.println("Connected to MQTT");
+      Serial.println(F("Connected to MQTT"));
     } else {
-      Serial.print("Failed with state ");
-      Serial.print(client.state());
+      Serial.print(F("Failed with state "));
+      Serial.print(F(client.state()));
       delay(2000);
     }
   }
@@ -50,36 +51,54 @@ void setup() {
 
 void loop() {
   // Scan for Bluetooth devices
-  Serial.println("Scanning for BLE devices...");
+  Serial.println(F("Scanning for BLE devices..."));
   BLEScanResults * foundDevices = pBLEScan->start(scanTime, false);
 
-  DynamicJsonDocument doc(1024); // Cambiar el tamaño por si no entra el buffer
-  doc["checkpointID"] = checkpointID;
+  int totalDevices = foundDevices->getCount();
+  Serial.println(totalDevices);
+  int devicesPerPacket = 5; 
+  int totalPackages = (totalDevices + devicesPerPacket - 1) / devicesPerPacket;
+  DynamicJsonDocument doc(bufferSize);
+  // Enviar cada paquete
+  for (int packageNum = 1; packageNum <= totalPackages; packageNum++) {
+    doc["packageNum"] = packageNum;
+    doc["totalPackages"] = totalPackages;
+    doc["checkpointID"] = WiFi.macAddress();
+    JsonArray animalsArray = doc.createNestedArray("animals");
 
-  // Loop through found devices
-for (int i = 0; i < foundDevices->getCount(); i++) {
-    BLEAdvertisedDevice device = foundDevices->getDevice(i);
-    if (device.getRSSI() >= -80) {
-      JsonObject animal = animals.createNestedObject();
-      animal["id"] = device.getAddress().toString().c_str();
-      animal["rssi"] = device.getRSSI();
+    int start = (packageNum - 1) * devicesPerPacket;
+    int end = min(start + devicesPerPacket, totalDevices);
+
+    for (int i = start; i < end; i++) {
+      BLEAdvertisedDevice device = foundDevices->getDevice(i);
+      if (device.getRSSI() >= -80) {
+        JsonObject animal = animalsArray.createNestedObject();
+        animal["id"] = device.getAddress().toString().c_str();
+        animal["rssi"] = device.getRSSI();
+      }
+      
     }
-  }
-  
-  char* output;
-  serializeJson(doc, output);
-  pBLEScan->clearResults(); // Clear scan results
+    Serial.println(packageNum);
+    Serial.println(totalPackages);
+    char output[bufferSize];
+    serializeJson(doc, output);
+    Serial.println(output);
+    pBLEScan->clearResults(); // Clear scan results
 
   if (client.connected()) {
-    client.publish("checkpoint", output.c_str());
+    client.publish("checkpoint", output);
     Serial.println("Published to MQTT:");
-    Serial.println(output.c_str());
   } else {
     Serial.println("MQTT connection lost. Attempting to reconnect...");
     if (client.connect("ESP32Client")) {
       Serial.println("Reconnected to MQTT");
     }
   }
+  }
+
+  
+  
+  
 
   // Wait 5 seconds before next scan
   delay(5000);

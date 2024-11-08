@@ -49,3 +49,14 @@ const getSpecificCheckPoint = (id) => {
 export const getCheckPointsWithAnimals = () => {
     return checkPoints;
 }
+
+export const handleData = (data) => {
+  const checkpointID = data.checkpointID;
+  const packageNum = data.packageNum;
+  const totalPackets = data.totalPackets;
+  console.log(`Recibido paquete ${packageNum} de ${totalPackets} para el checkpoint ${checkpointID}`);
+  const animalsFiltered = data.animals.filter(animal => animal.RSSI >= -40);
+  console.log(animalsFiltered);
+  addCheckPoint(checkpointID, animalsFiltered);
+  updateDevicesList(animalsFiltered);
+}
