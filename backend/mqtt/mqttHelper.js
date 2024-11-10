@@ -23,22 +23,34 @@ export const updateAnimalsInCheckpoint = (checkpointId, animals) => {
 
 export const updateDevicesList = (devices) => {
     const allAnimals = animalService.getAllAnimals().data.animals;
+    const allAnimalsIds = allAnimals.map(animal => animal.id);
     devices.forEach(device => {
-        if (!availableDevices.includes(device.id) || !allAnimals.includes(device.id)) {
+        if (!availableDevices.includes(device.id) && !allAnimalsIds.includes(device.id)) {
           availableDevices.push(device.id);
         }
     });
 }
 
 export const getAllAvailableDevices = () => {
-    return availableDevices;
+    if (availableDevices.length != 0) {
+        return availableDevices;
+    } else {
+        throw new Error("No hay dispositivos disponibles");
+    }
 }
 
 export const addCheckPoint = (checkPointId, animals) => {
+    const jsonCheckpoints = checkPointService.getAllCheckPoints().data.checkPoints;
+    console.log(jsonCheckpoints);
     if (!checkPoints.includes(getSpecificCheckPoint(checkPointId))) {
-        checkPoints.push(new CheckPoint(checkPointId, animals));
+        try {
+        const aux = checkPointService.getSpecificCheckPoint(checkPointId);
+        checkPoints.push(new CheckPoint(checkPointId, aux.lat, aux.long, aux.description, animals));
+        } catch (error) {
+            console.log(error.message);
+        }
     } else {
-        getSpecificCheckPoint(checkPointId).setAnimals(animals);
+        getSpecificCheckPoint(checkPointId).addNotRepeatedAnimals(animals);
     }
 }
 
@@ -47,16 +59,19 @@ const getSpecificCheckPoint = (id) => {
 }
 
 export const getCheckPointsWithAnimals = () => {
-    return checkPoints;
+    if (checkPoints.length != 0) {
+        return checkPoints;
+    } else {
+        throw new Error("No hay checkpoints disponibles");
+    }
 }
 
 export const handleData = (data) => {
   const checkpointID = data.checkpointID;
   const packageNum = data.packageNum;
-  const totalPackets = data.totalPackets;
-  console.log(`Recibido paquete ${packageNum} de ${totalPackets} para el checkpoint ${checkpointID}`);
-  const animalsFiltered = data.animals.filter(animal => animal.RSSI >= -40);
-  console.log(animalsFiltered);
+  const totalPackages = data.totalPackages;
+  console.log(`Recibido paquete ${packageNum} de ${totalPackages} para el checkpoint ${checkpointID}`);
+  const animalsFiltered = data.animals.filter(animal => animal.rssi >= -40);
   addCheckPoint(checkpointID, animalsFiltered);
   updateDevicesList(animalsFiltered);
 }

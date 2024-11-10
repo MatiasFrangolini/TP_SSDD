@@ -3,14 +3,26 @@ import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttH
 
 export const getAvailableDevices = (req, res) => {
     let devices = [];
-    devices = getAllAvailableDevices();
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(devices));
+    try {
+        devices = getAllAvailableDevices();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(devices));
+    } catch (error) {
+        res.writeHead(400, "Invalid request!");
+        res.end();
+    }
+   
 };
 
 export const getCheckPointsAnimals = (req, res) => {
     let checkPoints = [];
-    checkPoints = getCheckPointsWithAnimals();
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(checkPoints));
+    try {
+        checkPoints = getCheckPointsWithAnimals();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        console.log(JSON.stringify(checkPoints));
+        res.end(JSON.stringify(checkPoints));
+    } catch (error) {
+        res.writeHead(400, "Invalid request!");
+        res.end();
+    }
 };

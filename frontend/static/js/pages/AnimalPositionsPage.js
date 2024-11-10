@@ -7,13 +7,17 @@ export default class AnimalPositionsPage {
   constructor(selector) {
     this.container = document.getElementById(selector);
     this.loadPositions();
+    this.checkpoints = [];
   }
 
   async loadPositions() {
     try {
       if (!this.checkpoints || this.checkpoints?.length <= 0) {
         const data = await mqttAPIHelper.getPositions();
-        this.checkpoints = data.checkpoints;
+        data.forEach(element => {
+          this.checkpoints.push(element);
+        });
+        console.log(this.checkpoints[0].animals);
       }
     } catch (e) {
       console.log(e);

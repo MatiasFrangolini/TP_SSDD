@@ -10,6 +10,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "http": "^0.0.1-security",
+    "mqtt": "^5.10.1",
     "nodemon": "^3.1.7",
     "uuid": "^10.0.0"
   }

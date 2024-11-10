@@ -18,6 +18,7 @@ import {
 } from "./controllers/checkPointController.js";
 
 import { getAvailableDevices, getCheckPointsAnimals } from "./controllers/mqttController.js";
+import { connectMQTT } from "./mqtt/topicMqtt.js";
 
 
 const server = http.createServer((req, res) => {
@@ -33,8 +34,11 @@ const server = http.createServer((req, res) => {
     res.end();
     return;
   }
-
-  if (req.url.startsWith("/api/animals")) {
+  if (req.url.startsWith("/api/animals/positions")) {
+    if (req.method === "GET") {
+      getCheckPointsAnimals(req, res);
+    }
+  } else if (req.url.startsWith("/api/animals")) {
     if (req.method === "GET") {
       getAllAnimals(req, res);
     } else if (req.method === "POST") {
@@ -64,10 +68,6 @@ const server = http.createServer((req, res) => {
     if (req.method === "GET") {
       getAvailableDevices(req, res);
     }
-  } else if (req.url.startsWith("api/animals/positions")) {
-    if (req.method === "GET") {
-      getCheckPointsAnimals(req, res);
-    }
   } else {
     res.writeHead(404, "Ruta no encontrada");
     res.end();
@@ -76,4 +76,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(HTTP_PORT, () => {
   console.log(`Servidor escuchando en puerto ${HTTP_PORT}`);
+  connectMQTT();
 });

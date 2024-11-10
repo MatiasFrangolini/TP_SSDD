@@ -7,9 +7,9 @@
 #include <ArduinoJson.h>
 
 // Constants
-const char* ssid = "WifiMati";
-const char* password = "12345678";
-const char* mqtt_server = "192.168.43.46";
+const char* ssid = "dlink";
+const char* password = "";
+const char* mqtt_server = "192.168.42.60";
 const int mqtt_port = 1883;
 const size_t maxPayloadSize = 256;
 const size_t bufferSize = 2048;

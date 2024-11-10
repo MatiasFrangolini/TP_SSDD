@@ -20,6 +20,11 @@
         "id": "11:5e:e7:84:c4:f6",
         "name": "Vaquita",
         "description": "Vaca prueba"
+      },
+      {
+        "id": "02:b3:ec:c2:17:72",
+        "name": "Pruebita mqtt",
+        "description": "pruebass"
       }
     ]
   }

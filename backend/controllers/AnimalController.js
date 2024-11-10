@@ -1,4 +1,4 @@
-import { animalService as animalService } from "../services/animalService.js";
+import { animalService as animalService } from "../services/AnimalService.js";
 
 export const addAnimal = (req, res) => {
   let body = "";
@@ -23,14 +23,20 @@ export const addAnimal = (req, res) => {
 export const getAllAnimals = (req, res) => {
   const parametros = req.url.split('/');
   let animals;
-  if (parametros[3]){
-    const id = parametros[3]
-    animals = animalService.getSpecificAnimal(id);
-  } else {
-    animals = animalService.getAllAnimals();
+  try {
+    if (parametros[3]){
+      const id = parametros[3]
+      animals = animalService.getSpecificAnimal(id);
+    } else {
+      animals = animalService.getAllAnimals();
+    }
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(animals));
+  } catch (error) {
+    res.writeHead(400, "Invalid request!");
+    res.end();
   }
-  res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify(animals));
+  
 };
 
 export const deleteAnimal = (req, res) => {

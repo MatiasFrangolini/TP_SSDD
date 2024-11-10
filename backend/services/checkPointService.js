@@ -48,7 +48,7 @@ export const checkPointService = {
       }
     });
     if (ver == 0) {
-      throw new Error("Animal not found");
+      throw new Error("Checkpoint not found");
     }
     return SpecificCheckPoint;
   },
