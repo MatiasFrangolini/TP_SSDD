@@ -25,6 +25,7 @@ export const updateAnimalsInCheckpoint = (checkpointId, animals) => {
 }
 
 export const updateDevicesList = (devices) => {
+    availableDevices = [];
     const allAnimals = animalService.getAllAnimals().data.animals;
     const allAnimalsIds = allAnimals.map(animal => animal.id);
     devices.forEach(device => {

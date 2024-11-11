@@ -3,7 +3,7 @@ import { handleData } from "../mqtt/mqttHelper.js";
 //const mqtt = require("mqtt");
 import mqtt from "mqtt";
 export const connectMQTT = () => {
-  const client = mqtt.connect("mqtt://192.168.0.37:1883");
+  const client = mqtt.connect("mqtt://192.168.100.190:1883");
   const topic = "checkpoint";
 
   console.log("Conectando a MQTT...");
@@ -19,6 +19,7 @@ export const connectMQTT = () => {
   client.on("message", (topic, message) => {
     console.log("Mensaje recibido en el tópico:", topic);
     let data = JSON.parse(message.toString());
+    console.log(data);
     handleData(data);
   });
 
