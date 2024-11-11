@@ -19,7 +19,6 @@ export const getCheckPointsAnimals = (req, res) => {
     try {
         checkPoints = getCheckPointsWithAnimals();
         res.writeHead(200, { "Content-Type": "application/json" });
-        console.log(JSON.stringify(checkPoints));
         res.end(JSON.stringify(checkPoints));
     } catch (error) {
         res.writeHead(400, "Invalid request!");

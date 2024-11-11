@@ -9,7 +9,6 @@ export default class AnimalEditFormPage {
 
   async loadForm(id) {
     const data = await this.getData(id);
-    console.log(data);
     this.render(data);
     this.addListener();
   }

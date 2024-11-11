@@ -7,12 +7,15 @@ export let checkPoints = [];
 
 const checkAnimalsMqtt = (animals) => {
     const allAnimals = animalService.getAllAnimals().data.animals;
+    console.log("Entra al checkAnimals");
+    console.log(allAnimals);
     let presentAnimals = [];
     animals.forEach(animal => {
         if (allAnimals.includes(animal)) {
           presentAnimals.push(animal);
         }
     });
+    console.log(presentAnimals);
     return presentAnimals;
 };
 
@@ -40,8 +43,6 @@ export const getAllAvailableDevices = () => {
 }
 
 export const addCheckPoint = (checkPointId, animals) => {
-    const jsonCheckpoints = checkPointService.getAllCheckPoints().data.checkPoints;
-    console.log(jsonCheckpoints);
     if (!checkPoints.includes(getSpecificCheckPoint(checkPointId))) {
         try {
         const aux = checkPointService.getSpecificCheckPoint(checkPointId);
@@ -50,7 +51,7 @@ export const addCheckPoint = (checkPointId, animals) => {
             console.log(error.message);
         }
     } else {
-        getSpecificCheckPoint(checkPointId).addNotRepeatedAnimals(animals);
+        getSpecificCheckPoint(checkPointId).addNotRepeatedAnimals(checkAnimalsMqtt(animals));
     }
 }
 

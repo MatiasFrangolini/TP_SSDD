@@ -25,7 +25,7 @@ export const getAllAnimals = (req, res) => {
   let animals;
   try {
     if (parametros[3]){
-      const id = parametros[3]
+      const id = parametros[3];
       animals = animalService.getSpecificAnimal(id);
     } else {
       animals = animalService.getAllAnimals();

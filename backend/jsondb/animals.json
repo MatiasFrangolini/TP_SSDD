@@ -22,9 +22,14 @@
         "description": "Vaca prueba"
       },
       {
-        "id": "02:b3:ec:c2:17:72",
+        "id": "02:b3:ec:c2:17:73",
         "name": "Pruebita mqtt",
         "description": "pruebass"
+      },
+      {
+        "id": "2a:56:6f:52:50:7d",
+        "name": "Aasda",
+        "description": "god"
       }
     ]
   }
