@@ -14,6 +14,7 @@ export default class AnimalPositionsPage {
     try {
       if (!this.checkpoints || this.checkpoints?.length <= 0) {
         const data = await mqttAPIHelper.getPositions();
+        console.log(data);
         data.forEach(element => {
           this.checkpoints.push(element);
         });
