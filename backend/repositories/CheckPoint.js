@@ -1,8 +1,9 @@
 export class CheckPoint {
 
-    constructor(id, lat, long, description, animals) {
+    constructor(id, lat, long, description, animals, devices) {
         this.id = id;
         this.animals = animals;
+        this.devices = devices;
         this.lat = lat;
         this.long = long;
         this.description = description;
@@ -10,6 +11,17 @@ export class CheckPoint {
 
     setAnimals = (animals) => {
         this.animals = animals;
+    }
+
+    setDevices = (devices) => {
+        this.devices = devices;
+    }
+
+    getDevices = () => {
+        if (!this.devices) {
+            this.devices = [];
+        }
+        return this.devices;
     }
 
     addNotRepeatedAnimals = (animals) => {
@@ -20,7 +32,18 @@ export class CheckPoint {
         });
     }
 
+    addNotRepeatedDevices = (devices) => {
+        devices.forEach(device => {
+            if (!this.devices.includes(device)) {
+                this.devices.push(device);
+            }
+        });
+    }
+
     getAnimals = () => {
+        if (!this.animals) {
+            this.animals = [];
+        }
         return this.animals;
     }
 }
