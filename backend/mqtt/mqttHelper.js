@@ -8,11 +8,12 @@ const checkPointStatus = new Map();
 
 const checkAnimalsMqtt = (animals) => {
     const allAnimals = animalService.getAllAnimals().data.animals;
+    const allAnimalsIds = allAnimals.map(animal => animal.id);
     let presentAnimals = [];
     // aca estas comparando animals del mqtt (solo tienen id y rssi) con animals del json, no anda.
     // Hay q comparar ids
     animals.forEach(animal => {
-        if (allAnimals.includes(animal)) {
+        if (allAnimalsIds.includes(animal.id)) {
           presentAnimals.push(animal);
         }
     });
@@ -91,12 +92,14 @@ export const handleData = (data) => {
         addCheckPoint(checkpointID);
     } else {
         // Aca verifico que paquete corresponde a cada checkpoint, si es el paquete 1, hay que reiniciar los dispositivos de ese checkpoint
-        if (packageNum == 1) {
+        if (packageNum === 1) {
+            console.log("PAQUETE 1")
             if (!checkPointStatus.has(checkpointID) || checkPointStatus.get(checkpointID) != 1) {
-            checkPointStatus.set(checkpointID, 1);
-            resetDevices(checkpointID);
+                checkPointStatus.set(checkpointID, 1);
             }
-        } else {
+            resetDevices(checkpointID);
+        }
+        else {
             checkPointStatus.set(checkpointID, packageNum);
         }
     }
