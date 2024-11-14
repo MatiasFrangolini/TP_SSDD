@@ -1,5 +1,12 @@
-# TP_SSDD
-Trabajo Práctico para Sistemas Distribuidos. Universidad Nacional de Mar del Plata.
+# Trabajo Final para la asignatura Sistema Distribuidos. 
+
+## Contenido
+- [Integrantes del grupo](#integrantes-del-grupo)
+- [Tech Stack](#tech-stack)
+- [Instalacion y uso](#instalacion-y-uso)
+- [API y consideraciones del Backend](#api-y-consideraciones-del-backend)
+- [MQTT](#mqtt)
+- [Arduino](#arduino)
 
 ## Integrantes del grupo
 - Frangolini, Matias Nicolas
@@ -9,7 +16,7 @@ Trabajo Práctico para Sistemas Distribuidos. Universidad Nacional de Mar del Pl
 
 ### Tech stack:
 Backend
-- Http de node para la API REST
+- HTTP de node para la API REST
 - Express para la API REST requisito de promocion
 - dotenv, para configuar variables de entorno
 - nodemon, para demonizar el proceso y contar con hot reload ante modificaciones en los archivos.
@@ -17,6 +24,20 @@ Backend
 Frontend
 - Axios para las requests HTTP
 - Vanilla JS, HTML
+
+## Instalacion y uso
+> **Aviso:**
+> Debe contar con Node.js v20 o superior, mosquitto v2.0.19 o superior y Docker Desktop.
+0. Clonar el repositorio
+1. Ir al directorio del backend, `cd backend`
+2. Ejecutar `npm i` para instalar las dependencias en el package.json
+3. Ejecutar `npm run dev` para correr el script "dev" del package.json (nodemon).
+4. Ir al directorio del frontend y repetir la instalacion de dependencias y ejecucion del script dev.
+5. Desde la plataforma Arduino instalar el apartado `esp32` de placas para que reconozca las Wemos D1 R32
+6. Compilar y subirle a todas las placas el codigo arduinoBT que se encuentra en el directorio `arduinoBT`
+7. Levantar un contenedor en docker-file para hostear el broker Mosquitto
+8. Ir al directorio principal y ejecutar en consola `docker-compose up --build`
+9. Abrir un navegador web y acceder a `http://localhost:3001` para ver el frontend en acción.
 
 ## API y consideraciones del Backend:
 La API base fue realizada en HTTP. 
@@ -26,12 +47,12 @@ Fue realizada con una arquitectura ruta, controlador, servicio, repositorio.
 - Los **servicios** son los responsables de manejar la logica de negocio de la aplicacion. Verifican que las solicitudes cumplan los contratos y utilizan los repositorios para leer y modificar informacion de la base de datos.
 - Los **repositorios** son los que realmente acceden a la informacion. Acceden a las bases de datos que en el caso de esta solucion son archivos JSON.
 
-- Dentro de la carpeta **backend** se encuentra un archivo .env que permite modificar variables de entorno, por ejemplo el puerto HTTP de la API. Se ha utilizado dotenv para poder leer estas variables.
+- Dentro de la carpeta **backend** se encuentra un archivo .env que permite modificar variables de entorno, por ejemplo el puerto HTTP de la API. Se utiliza dotenv para poder leer estas variables.
 
 ## MQTT:
 - Configuracion MQTT: dentro del backend tambien se encuentra la conexion al broker y la suscripcion al topico checkpoint. El broker que utilizaremos sera Mosquitto. Esta conexion y suscripcion permite al backend poder leer los mensajes que escriben las placas wemos ubicadas en posiciones estrategicas del campo en el canal de MQTT y manejar la informacion que llega por estos mensajes como una solucion tipica de IoT lo requiere.
 - MQTT Helper: esta clase sera la encargada de manejar la informacion que llegue al topico checkpoint por el canal MQTT. Utilizara tambien los servicios que usa la API ya que mantiene la misma logica de negocio de la aplicacion y ademas esta decision de arquitectura encapsula la logica para acceder a los datos.
-- El broker sera levantado utilizando la herramienta Docker Desktop y un archivo docker-compose.yml. Para levantarlo se debera escribir por consola docker-compose up --build.
+- El broker sera levantado utilizando la herramienta Docker Desktop y un archivo docker-compose.yml. 
 
 ## ARDUINO
 Dentro de la carpeta "arduinoBT" se encontrara el codigo que se debe cargar en las placas. Es un codigo compatible con placas Wemos D1 R32 que recomendamos que sea subido a la placa por la plataforma que brinda Arduino.
