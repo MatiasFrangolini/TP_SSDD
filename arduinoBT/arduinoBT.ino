@@ -7,12 +7,16 @@
 #include <ArduinoJson.h>
 
 // Constants
-const char* ssid = "NAVE WiFi - 01846";
-const char* password = "21904450";
-const char* mqtt_server = "192.168.100.190";
+// Reemplazarlas de acuerdo a las propias
+const char* ssid = "..."; // Nombre de la red wifi
+const char* password = "..."; // Password de la red wifi
+const char* mqtt_server = "..."; // IP del broker MQTT
 const int mqtt_port = 1883;
+const char* mqtt_user = ""; // Usuario del broker MQTT (Dejar "" si no se utiliza)
+const char* mqtt_password = ""; // Password del broker MQTT (Dejar "" si no se utiliza)
 const size_t bufferSize = 2048;
-const int devicesPerPacket = 2;
+setBufferSize(bufferSize); // Modifica el tamanio del buffer de la libreria PubSubClient
+const int devicesPerPacket = 3; // Esto es configurable por el usuario, se recomiendan entre 3 y 5.
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -35,7 +39,7 @@ void setup() {
   client.setServer(mqtt_server, mqtt_port);
   while (!client.connected()) {
     Serial.println(F("Connecting to MQTT..."));
-    if (client.connect("ESP32Client")) {
+    if (client.connect("ESP32Client", mqtt_user, mqtt_password)) {
       Serial.println(F("Connected to MQTT"));
     } else {
       Serial.print(F("Failed with state "));
@@ -60,7 +64,6 @@ void loop() {
 
   // Recorro los dispositivos
   for (int i = 0; i < totalDevices; i += devicesPerPacket) {
-    // Armo cada 
     StaticJsonDocument<bufferSize> doc;
     doc["checkpointID"] = WiFi.macAddress();
     doc["packageNum"] = packageNum;
@@ -85,7 +88,7 @@ void loop() {
       packageNum++;
     } else {
       Serial.println("MQTT connection lost. Attempting to reconnect...");
-      if (client.connect("ESP32Client")) {
+      if (client.connect("ESP32Client", mqtt_user, mqtt_password)) {
         Serial.println("Reconnected to MQTT");
       }
     }

@@ -5,6 +5,7 @@ export default class AvailableDevicesPage {
   constructor(selector) {
     this.container = document.getElementById(selector);
     this.loadDevices();
+    this.suscribeToEvent();
   }
 
   async loadDevices() {
@@ -40,4 +41,16 @@ export default class AvailableDevicesPage {
     this.deviceItems.forEach((deviceItem) => deviceItem.addListeners());
   }
   
+
+  suscribeToEvent() {
+    const eventSource = new EventSource("http://localhost:3000/api/events/availableDevices");
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("Evento recibido:", data);
+    };
+
+    eventSource.onerror = (error) => {
+      console.error("Error en SSE:", error);
+    };
+  };
 }

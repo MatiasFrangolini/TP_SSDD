@@ -7,6 +7,8 @@ import CheckPointEditFormPage from "./pages/CheckPointEditFormPage.js";
 import AvailableDevicesPage from "./pages/AvailableDevicesPage.js";
 import AnimalPositionsPage from "./pages/AnimalPositionsPage.js";
 
+
+
 export const navigateTo = (url) => {
   window.history.pushState({}, "", url);
   loadPage();

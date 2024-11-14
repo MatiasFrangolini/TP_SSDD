@@ -17,8 +17,8 @@ import {
   patchCheckPoint,
 } from "./controllers/checkPointController.js";
 
-import { getAvailableDevices, getCheckPointsAnimals } from "./controllers/mqttController.js";
-import { connectMQTT } from "./mqtt/topicMqtt.js";
+import { getAvailableDevices, getCheckPointsAnimals, connectMQTTController } from "./controllers/mqttController.js";
+import { sseCheckpoints, sseDevices } from "./controllers/sseController.js";
 
 
 const server = http.createServer((req, res) => {
@@ -34,6 +34,11 @@ const server = http.createServer((req, res) => {
     res.end();
     return;
   }
+  if (req.url === "/api/events/availableDevices" && req.method === "GET") {
+    sseDevices(req, res);
+    return;
+  }
+
   if (req.url.startsWith("/api/animals/positions")) {
     if (req.method === "GET") {
       getCheckPointsAnimals(req, res);
@@ -76,5 +81,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(HTTP_PORT, () => {
   console.log(`Servidor escuchando en puerto ${HTTP_PORT}`);
-  connectMQTT();
+  connectMQTTController();
 });

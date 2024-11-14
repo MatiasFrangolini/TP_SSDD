@@ -1,6 +1,10 @@
 import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttHelper.js";
+import { connectMQTT } from "../mqtt/topicMqtt.js";
 
 
+export const connectMQTTController = (req, res) => {
+    connectMQTT();
+};
 export const getAvailableDevices = (req, res) => {
     let devices = [];
     try {
