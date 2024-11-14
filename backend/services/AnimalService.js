@@ -5,7 +5,6 @@ import { isNewAnimalValid } from "../validations/animalValidations.js";
 
 export const animalService = {
   addAnimal: (animalData) => {
-    console.log(animalData);
     if (!isNewAnimalValid(animalData)) {
       throw new Error("Invalid data");
     }
