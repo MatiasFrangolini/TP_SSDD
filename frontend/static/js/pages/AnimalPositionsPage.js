@@ -53,10 +53,40 @@ export default class AnimalPositionsPage {
       }));
     
     checkPointsHtml += "</div>";
-    this.container.innerHTML = checkPointsHtml;
-
+    //this.container.innerHTML = checkPointsHtml;
     
+    const checkpointsContainer = document.querySelector('#checkpoints-container');
+    if (checkpointsContainer) {
+        checkpointsContainer.innerHTML = checkPointsHtml;
+    } else {
+        this.container.innerHTML = `
+          <div id="map" style="height: 400px;"></div>
+          <div id="checkpoints-container">${checkPointsHtml}</div>
+        `;
+    }
+    if (!this.map) {
+      this.map = L.map('map', {
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        zoomControl: false,
+      }).setView([-38.010263, -57.638990], 16);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(this.map);
+      this.positionItems.forEach((positionItem) => {
+        const marker = L.marker([positionItem.lat, positionItem.long]).addTo(this.map);
+        marker.bindPopup(positionItem.description + "<br>"+ positionItem.lat + ", " + positionItem.long);
+      })
+    }    
   }
+
+  renderMap() {
+
+  }
+
 
   suscribeToEvent() {
     const eventSource = new EventSource("http://localhost:3000/api/events/positions");
