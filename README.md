@@ -7,6 +7,7 @@
 - [API y consideraciones del Backend](#api-y-consideraciones-del-backend)
 - [MQTT](#mqtt)
 - [Arduino](#arduino)
+- [Promocion](#promocion)
 
 ## Integrantes del grupo
 - Frangolini, Matias Nicolas
@@ -65,3 +66,8 @@ El codigo se conectara a WiFi, luego al Broker y cada 10 segundos hara un scan d
   - Direccion MAC de la placa
   - Un arreglo de collares reconocidos en el rango de este checkpoint. Cada paquete contendra una cantidad configurable de animales en el arreglo, se adopto esta solucion para evitar que el buffer de la Wemos se llene.
 
+## PROMOCION
+Para acceder a la version de promocion que incluye la API implementada en Express.js, servicio de Log-In con autenticacion y un mapa donde se muestra la ubicacion de los animales.
+  - Se debe obtener la rama promocion, ejecutando por consola `git fetch origin promocion`
+  - Luego moverse a esa branch, con el comando `git checkout promocion`
+  - Correr back y frontend.
