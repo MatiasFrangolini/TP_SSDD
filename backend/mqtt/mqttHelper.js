@@ -15,7 +15,7 @@ export const refreshData = (animalId) => {
 };
 
 const checkAnimalsMqtt = (animals) => {
-    const allAnimals = animalService.getAllAnimals().data.animals;
+    const allAnimals = animalService.getAllAnimals().animals;
     const allAnimalsIds = allAnimals.map(animal => animal.id);
     let presentAnimals = [];
     animals.forEach(animal => {
@@ -27,7 +27,7 @@ const checkAnimalsMqtt = (animals) => {
 };
 
 export const createCheckpoints = () => {
-    const allCheckPoints = checkPointService.getAllCheckPoints().data.checkPoints;
+    const allCheckPoints = checkPointService.getAllCheckPoints().checkPoints;
     allCheckPoints.forEach(checkPoint => {
         checkPoints.push(new CheckPoint(checkPoint.id, checkPoint.lat, checkPoint.long, checkPoint.description, [], []));
     });
@@ -39,7 +39,7 @@ export const updateAnimalsInCheckpoint = (checkpointId, animals) => {
 }
 
 export const updateDevicesList = (devices) => {
-    const allAnimals = animalService.getAllAnimals().data.animals;
+    const allAnimals = animalService.getAllAnimals().animals;
     const allAnimalsIds = allAnimals.map(animal => animal.id);
     devices.forEach(device => {
         if (!availableDevices.includes(device.id) && !allAnimalsIds.includes(device.id)) {

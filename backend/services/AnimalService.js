@@ -8,7 +8,7 @@ export const animalService = {
     if (!isNewAnimalValid(animalData)) {
       throw new Error("Invalid data");
     }
-    let existingAnimals = getAnimals().data.animals;
+    let existingAnimals = getAnimals().animals;
     let nombre = " ";
     if (animalData.name) 
       nombre = animalData.name;
@@ -30,7 +30,7 @@ export const animalService = {
   getSpecificAnimal: (id) => {
     var ver = 0;
     const arch = getAnimals();
-    var existingAnimals = arch.data.animals;
+    var existingAnimals = arch.animals;
     var specificAnimal;
     existingAnimals.forEach((animal) => {
       if ((animal.id === id)) {
@@ -46,7 +46,7 @@ export const animalService = {
 
   deleteAnimal: (id) => {
     const arch = getAnimals();
-    const existingAnimals = arch.data.animals;
+    const existingAnimals = arch.animals;
     const updatedAnimals = existingAnimals.filter((animal) => animal.id !== id);
 
     if (existingAnimals.length === updatedAnimals.length) {
@@ -62,7 +62,7 @@ export const animalService = {
     } else {
     var ver = 0;
     const arch = getAnimals();
-    var existingAnimals = arch.data.animals;
+    var existingAnimals = arch.animals;
     existingAnimals.forEach((animal) => {
       if ((animal.id === id)) {
         ver = 1;
