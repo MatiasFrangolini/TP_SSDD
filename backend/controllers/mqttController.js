@@ -6,15 +6,14 @@ export const connectMQTTController = (req, res) => {
     connectMQTT();
     createCheckpoints();
 };
+
 export const getAvailableDevices = (req, res) => {
     let devices = [];
     try {
         devices = getAllAvailableDevices();
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(devices));
+        res.status(200).json(devices);
     } catch (error) {
-        res.writeHead(400, "Invalid request!");
-        res.end();
+        res.status(400).send("Invalid request!");
     }
    
 };
@@ -24,10 +23,8 @@ export const getCheckPointsAnimals = (req, res) => {
     let checkPoints = [];
     try {
         checkPoints = getCheckPointsWithAnimals();
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(checkPoints));
+        res.status(200).json(checkPoints);
     } catch (error) {
-        res.writeHead(400, "Invalid request!");
-        res.end();
+        res.status(400).send("Invalid Request!");
     }
 };
