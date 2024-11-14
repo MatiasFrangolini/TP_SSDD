@@ -1,79 +1,47 @@
-import { parse } from "uuid";
 import { checkPointService } from "../services/checkPointService.js";
 
 export const addCheckPoint = (req, res) => {
-  let body = "";
-  req.on("data", (chunk) => {
-    body += chunk;
-  });
-  req.on("end", () => {
     try {
-      const parsedBody = JSON.parse(body);
-      const newCheckPoint = checkPointService.addCheckPoint(parsedBody);
-      res.writeHead(201, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(newCheckPoint));
-      
-    } catch (error) {
-      console.log(error.message);
-      res.writeHead(400, "Invalid request!");
-      res.end();
+      const newCheckPoint = checkPointService.addCheckPoint(req.body);
+      res.status(201).json(newCheckPoint);
     }
-  });
+    catch (error) {
+      res.status(400).send("Check Point could not be added");
+    }
 };
 
 export const getAllCheckPoints = (req, res) => {
-  const parametros = req.url.split('/');
-  let checkPoints;
   try {
-    if (parametros[3]){
-      const id = parametros[3]
+    let checkPoints;
+    const { id } = req.params;  
+    if (id){
       checkPoints = checkPointService.getSpecificCheckPoint(id);
     } else {
       checkPoints = checkPointService.getAllCheckPoints();
     }
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(checkPoints));
+    res.status(201).json(checkPoints);
   } catch (error) {
-    console.log(error.message);
-      res.writeHead(400, "Invalid request!");
-      res.end();
+    res.status(400).send("Invalid request!");
   }
-  
 };
 
 
 export const deleteCheckPoint = (req, res) => {
-  const parametros = req.url.split('/');
-  const id = parametros [3];
   try {
+      const { id } = req.params;
       checkPointService.deleteCheckPoint(id);
-
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: "Checkpoint deleted successfully" }));
+      res.status(201).json({ message: "Check Point deleted successfully" });
     } catch (error) {
-      console.log(error.message);
-      res.writeHead(400, "Invalid request!");
-      res.end();
+      res.status(400).send("Invalid request!");
     }
-}
+};
 
 export const patchCheckPoint = (req, res) => {
-  const parametros = req.url.split('/');
-  const id = parametros[3];
-  let body = "";
-  req.on("data", (chunk) => {
-    body += chunk;
-  });
-  req.on("end", () => {
     try {
-      const parsedBody = JSON.parse(body);
-      checkPointService.patchCheckPoint(id,parsedBody);
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: "Check Point updated successfully" }));
+      const { id } = req.params;
+      checkPointService.patchCheckPoint(id,req.body);
+      res.status(201).json({ message: "Check Point updated successfully" });
     } catch (error) {
-      console.log(error.message);
-      res.writeHead(400, "Invalid request!");
-      res.end();
+      res.status(400).send("Invalid request!");
     }
-  });
 };

@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "express": "^4.21.1",
     "http": "^0.0.1-security",
     "mqtt": "^5.10.1",
     "nodemon": "^3.1.7",
