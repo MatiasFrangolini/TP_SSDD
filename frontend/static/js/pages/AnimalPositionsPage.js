@@ -8,6 +8,7 @@ export default class AnimalPositionsPage {
     this.container = document.getElementById(selector);
     this.loadPositions();
     this.checkpoints = [];
+    this.suscribeToEvent();
   }
 
   async loadPositions() {
@@ -30,7 +31,7 @@ export default class AnimalPositionsPage {
   async render() {
     let checkPointsHtml = `
       <h3 class="bg-gray text-center my-8 font-bold text-2xl">CheckPoints disponibles:</h3>
-      <div class="grid grid-cols-4 gap-4">
+      <div class="grid grid-cols-4 gap-4 items-start">
     `;
 
     this.positionItems = await Promise.all(
@@ -56,4 +57,17 @@ export default class AnimalPositionsPage {
 
     
   }
+
+  suscribeToEvent() {
+    const eventSource = new EventSource("http://localhost:3000/api/events/positions");
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      this.checkpoints = data;
+      this.render();
+    };
+
+    eventSource.onerror = (error) => {
+      console.error("Error en SSE:", error);
+    };
+  };
 }

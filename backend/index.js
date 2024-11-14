@@ -38,6 +38,10 @@ const server = http.createServer((req, res) => {
     sseDevices(req, res);
     return;
   }
+  if (req.url === "/api/events/positions" && req.method === "GET") {
+    sseCheckpoints(req, res);
+    return;
+  }
 
   if (req.url.startsWith("/api/animals/positions")) {
     if (req.method === "GET") {

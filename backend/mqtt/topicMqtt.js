@@ -19,7 +19,6 @@ export const connectMQTT = () => {
   client.on("message", (topic, message) => {
     console.log("Mensaje recibido en el tópico:", topic);
     let data = JSON.parse(message.toString());
-    console.log(data);
     handleData(data);
   });
 

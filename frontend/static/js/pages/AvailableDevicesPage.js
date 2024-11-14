@@ -46,7 +46,8 @@ export default class AvailableDevicesPage {
     const eventSource = new EventSource("http://localhost:3000/api/events/availableDevices");
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log("Evento recibido:", data);
+      this.devices = data;
+      this.render();
     };
 
     eventSource.onerror = (error) => {

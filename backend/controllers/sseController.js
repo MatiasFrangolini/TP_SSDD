@@ -16,7 +16,7 @@ import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttH
         }
       };
   
-      const intervalId = setInterval(sendEvent, 5000);
+      const intervalId = setInterval(sendEvent, 2000);
   
       req.on("close", () => {
         clearInterval(intervalId);
@@ -41,7 +41,7 @@ import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttH
           }
       };
   
-      const intervalId = setInterval(sendEvent, 5000);
+      const intervalId = setInterval(sendEvent, 2000);
   
       req.on("close", () => {
         clearInterval(intervalId);

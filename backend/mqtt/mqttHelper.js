@@ -18,6 +18,13 @@ const checkAnimalsMqtt = (animals) => {
     return presentAnimals;
 };
 
+export const createCheckpoints = () => {
+    const allCheckPoints = checkPointService.getAllCheckPoints().data.checkPoints;
+    allCheckPoints.forEach(checkPoint => {
+        checkPoints.push(new CheckPoint(checkPoint.id, checkPoint.lat, checkPoint.long, checkPoint.description, [], []));
+    });
+}
+
 
 export const updateAnimalsInCheckpoint = (checkpointId, animals) => {
     checkPointService.setAnimalsInCheckpoint(checkpointId, checkAnimalsMqtt(animals));
@@ -43,8 +50,6 @@ export const getAllAvailableDevices = () => {
 
 export const updateCheckPoint = (checkPointId, animals) => {
     const devicesNotInJson = animals.filter(animal => !checkAnimalsMqtt(animals).includes(animal));
-    console.log("Devices:" + devicesNotInJson);
-    console.log("Animals:" + checkAnimalsMqtt(animals));
     getSpecificCheckPoint(checkPointId)?.addNotRepeatedAnimals(checkAnimalsMqtt(animals));
     getSpecificCheckPoint(checkPointId)?.addNotRepeatedDevices(devicesNotInJson);
 }
@@ -84,22 +89,16 @@ export const handleData = (data) => {
     const checkpointID = data.checkpointID;
     const packageNum = data.packageNum;
     const totalPackages = data.totalPackages;
-    const cPoint = getSpecificCheckPoint(checkpointID);
 
-    if (!cPoint) {
-        addCheckPoint(checkpointID);
-    } else {
-        // Aca verifico que paquete corresponde a cada checkpoint, si es el paquete 1, hay que reiniciar los dispositivos de ese checkpoint
-        if (packageNum === 1) {
-            if (!checkPointStatus.has(checkpointID) || checkPointStatus.get(checkpointID) != 1) {
-                checkPointStatus.set(checkpointID, 1);
-            }
-            console.log("entra paquete 1");
-            resetDevices(checkpointID);
+    // Aca verifico que paquete corresponde a cada checkpoint, si es el paquete 1, hay que reiniciar los dispositivos de ese checkpoint
+    if (packageNum === 1) {
+        if (!checkPointStatus.has(checkpointID) || checkPointStatus.get(checkpointID) != 1) {
+            checkPointStatus.set(checkpointID, 1);
         }
-        else {
-            checkPointStatus.set(checkpointID, packageNum);
-        }
+        resetDevices(checkpointID);
+    }
+    else {
+        checkPointStatus.set(checkpointID, packageNum);
     }
 
     console.log(`Recibido paquete ${packageNum} de ${totalPackages} para el checkpoint ${checkpointID}`);
