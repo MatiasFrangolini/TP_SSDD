@@ -1,4 +1,3 @@
-import { getAvailableDevices, getCheckPointsAnimals } from "./mqttController.js";
 import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttHelper.js";
  export const sseDevices = (req, res) => {
     res.writeHead(200, {
@@ -13,8 +12,7 @@ import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttH
           const devices = getAllAvailableDevices();
           res.write(`data: ${JSON.stringify(devices)}\n\n`);
         } catch (error) {
-          res.writeHead(400, "Invalid request!");
-          res.end();
+          res.write(`error: ${error.message}\n\n`);
         }
       };
   
@@ -35,7 +33,12 @@ import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttH
       res.write("\n");
 
       const sendEvent = () => {
-        getCheckPointsAnimals(req, res);
+        try {
+            const checkpoints = getCheckPointsWithAnimals();
+            res.write(`data: ${JSON.stringify(checkpoints)}\n\n`);
+          } catch (error) {
+            res.write(`error: ${error.message}\n\n`);
+          }
       };
   
       const intervalId = setInterval(sendEvent, 5000);
