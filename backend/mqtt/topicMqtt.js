@@ -1,9 +1,11 @@
 import { handleData } from "../mqtt/mqttHelper.js";
 
-//const mqtt = require("mqtt");
 import mqtt from "mqtt";
+
+const ipMqttServer = "192.168.0.37";
+const portMqttServer = 1883;
 export const connectMQTT = () => {
-  const client = mqtt.connect("mqtt://192.168.0.37:1883");
+  const client = mqtt.connect(`mqtt://${ipMqttServer}:${portMqttServer}`);
   const topic = "checkpoint";
 
   console.log("Conectando a MQTT...");

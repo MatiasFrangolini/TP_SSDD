@@ -1,4 +1,5 @@
 import { animalService as animalService } from "../services/AnimalService.js";
+import { isNewAnimalValid } from "../validations/animalValidations.js";
 
 export const addAnimal = (req, res) => {
   let body = "";
@@ -13,7 +14,7 @@ export const addAnimal = (req, res) => {
       res.end(JSON.stringify(newAnimal));
       
     } catch (error) {
-      console.log(error.message);
+      console.log("Error: " + error.message);
       res.writeHead(400, "Invalid request!");
       res.end();
     }

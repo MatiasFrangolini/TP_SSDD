@@ -1,5 +1,6 @@
 import AnimalsApiHelper from "../helper/api/AnimalsApiHelper.js";
 import { navigateTo } from "../index.js";
+import { validateNewAnimal } from "../helper/validations/animalValidations.js";
 
 export default class AnimalFormPage {
   constructor(selector, id) {
@@ -18,10 +19,11 @@ export default class AnimalFormPage {
       const id = event.target.elements.bluetooth.value.trim();
       const name = event.target.elements.name.value.trim();
       const description = event.target.elements.description.value.trim();
-      //validateNewAnimal({bluetoothId,name, description });
-      await AnimalsApiHelper.addAnimal({ id, name, description });
-      alert("Animal agregado exitosamente!");
-      navigateTo("/");
+      if (validateNewAnimal({ description })) {
+        await AnimalsApiHelper.addAnimal({ id, name, description });
+        alert("Animal agregado exitosamente!");
+        navigateTo("/");
+      }
       window.removeEventListener("submit", this.handleSubmit);
     } catch (e) {
       console.log(e);
@@ -44,7 +46,7 @@ export default class AnimalFormPage {
             </div>
             <div class="input-container flex flex-col my-2">
                 <label for="name" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Nombre:</label>
-                <input type="text" id="name" name="name" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" required>
+                <input type="text" id="name" name="name" class="input-field bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name">
             </div>
             <div class="input-container flex flex-col my-2">
                 <label for="description" class="input-label block text-gray-500 font-bold mb-1 md:mb-0 pr-4">Descripcion:</label>

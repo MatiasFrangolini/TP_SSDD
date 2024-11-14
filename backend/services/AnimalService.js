@@ -1,9 +1,12 @@
 import { getAnimals, writeAnimals } from "../repositories/animalRepository.js";
 import { refreshData } from "../mqtt/mqttHelper.js";
+import { validate } from "uuid";
+import { isNewAnimalValid } from "../validations/animalValidations.js";
 
 export const animalService = {
   addAnimal: (animalData) => {
-    if (!animalData.description || !animalData.id) {
+    console.log(animalData);
+    if (!isNewAnimalValid(animalData)) {
       throw new Error("Invalid data");
     }
     let existingAnimals = getAnimals().data.animals;
