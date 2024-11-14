@@ -19,6 +19,7 @@ export const getAvailableDevices = (req, res) => {
    
 };
 
+
 export const getCheckPointsAnimals = (req, res) => {
     let checkPoints = [];
     try {

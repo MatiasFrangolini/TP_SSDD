@@ -2,74 +2,49 @@
   "data": {
     "animals": [
       {
-        "id": "b1",
-        "name": "Bernardo",
-        "description": "Vaca Bernardo"
+        "id": "7B-D4-92-78-C1-08",
+        "name": "Animal1",
+        "description": "Descripcion1"
       },
       {
-        "id": "123123123123",
-        "name": "asdesdg",
-        "description": "asfdagahaahaha"
+        "id": "7B-D4-92-78-C1-09",
+        "name": "Animal2",
+        "description": "Descripcion2"
       },
       {
-        "id": "312312312",
-        "name": "Mati",
-        "description": "hola"
+        "id": "7B-D4-92-78-C1-10",
+        "name": "Animal3",
+        "description": "Descripcion3"
       },
       {
-        "id": "11:5e:e7:84:c4:f6",
-        "name": "Vaquita",
-        "description": "Vaca prueba"
+        "id": "7B-D4-92-78-C1-11",
+        "name": "Animal4",
+        "description": "Descripcion4"
       },
       {
-        "id": "02:b3:ec:c2:17:73",
-        "name": "Pruebita mqtt",
-        "description": "pruebass"
+        "id": "7B-D4-92-78-C1-12",
+        "name": "Animal5",
+        "description": "Descripcion5"
       },
       {
-        "id": "2a:56:6f:52:50:7d",
-        "name": "Aasda",
-        "description": "god"
+        "id": "7B-D4-92-78-C1-13",
+        "name": "Animal6",
+        "description": "Descripcion6"
       },
       {
-        "id": "43:0b:e9:3c:8d:3f",
-        "name": "Q bien q esta la pc de pedro",
-        "description": "goood"
+        "id": "7B-D4-92-78-C1-14",
+        "name": "Animal7",
+        "description": "Descripcion7"
       },
       {
-        "id": "ec:a9:59:52:83:99",
-        "name": "bien",
-        "description": "biennnn"
+        "id": "7B-D4-92-78-C1-17",
+        "name": "Animal8",
+        "description": "Descripcion8"
       },
       {
-        "id": "02:b3:ec:c2:17:72",
-        "name": "Prueba front",
-        "description": "Prueba"
-      },
-      {
-        "id": "76:55:8e:cb:6b:eb",
-        "name": "se",
-        "description": "se"
-      },
-      {
-        "id": "12345670123",
-        "name": "a ver",
-        "description": "q pasa"
-      },
-      {
-        "id": "1234541651",
-        "name": "aaa",
-        "description": "sss"
-      },
-      {
-        "id": "1234541621",
-        "name": "gsg",
-        "description": "sd"
-      },
-      {
-        "id": "1234541611",
-        "name": "gaga",
-        "description": "sdads"
+        "id": "7B-D4-92-78-C1-16",
+        "name": "Animal9",
+        "description": "Descripcion9"
       }
     ]
   }

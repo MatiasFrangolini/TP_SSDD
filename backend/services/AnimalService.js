@@ -1,4 +1,5 @@
 import { getAnimals, writeAnimals } from "../repositories/animalRepository.js";
+import { refreshData } from "../mqtt/mqttHelper.js";
 
 export const animalService = {
   addAnimal: (animalData) => {
@@ -16,7 +17,7 @@ export const animalService = {
     };
     existingAnimals.push(newAnimal);
     writeAnimals(existingAnimals);
-
+    refreshData(animalData.id);
     return newAnimal;
   },
 

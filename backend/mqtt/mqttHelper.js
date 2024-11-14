@@ -6,6 +6,14 @@ export let availableDevices = [];
 export let checkPoints = [];
 const checkPointStatus = new Map();
 
+export const refreshData = (animalId) => {
+    availableDevices.forEach(device => {
+        if (device === animalId) {
+            availableDevices.splice(availableDevices.indexOf(device), 1);
+        }
+    });
+};
+
 const checkAnimalsMqtt = (animals) => {
     const allAnimals = animalService.getAllAnimals().data.animals;
     const allAnimalsIds = allAnimals.map(animal => animal.id);
@@ -79,7 +87,7 @@ const resetDevices = (checkpointId) => {
     const checkPoint = getSpecificCheckPoint(checkpointId);
     const devicesCheckPoint = checkPoint.getDevices();
     devicesCheckPoint.forEach(device => {
-        availableDevices.pop(device);
+        availableDevices.splice(availableDevices.indexOf(device), 1);
     })
     checkPoint.animals = [];
     checkPoint.devices = [];

@@ -17,7 +17,7 @@ import {
   patchCheckPoint,
 } from "./controllers/checkPointController.js";
 
-import { getAvailableDevices, getCheckPointsAnimals, connectMQTTController } from "./controllers/mqttController.js";
+import { getAvailableDevices, getCheckPointsAnimals, connectMQTTController} from "./controllers/mqttController.js";
 import { sseCheckpoints, sseDevices } from "./controllers/sseController.js";
 
 
