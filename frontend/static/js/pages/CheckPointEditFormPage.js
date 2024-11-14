@@ -1,5 +1,6 @@
 import checkPointsApiHelper from "../helper/api/checkPointsApiHelper.js";
 import { navigateTo } from "../index.js";
+import "../helper/api/AxiosRequestInterceptor.js";
 
 export default class CheckPointEditFormPage {
   constructor(selector, id) {

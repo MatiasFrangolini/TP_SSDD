@@ -1,5 +1,6 @@
 import AnimalsApiHelper from "../helper/api/AnimalsApiHelper.js";
 import { navigateTo } from "../index.js";
+import "../helper/api/AxiosRequestInterceptor.js";
 
 export default class AnimalEditFormPage {
   constructor(selector, id) {

@@ -6,8 +6,10 @@ import CheckPointPage from "./pages/CheckPointPage.js";
 import CheckPointEditFormPage from "./pages/CheckPointEditFormPage.js";
 import AvailableDevicesPage from "./pages/AvailableDevicesPage.js";
 import AnimalPositionsPage from "./pages/AnimalPositionsPage.js";
-
-
+import AuthStateHelper from "./helper/state/AuthStateHelper.js";
+import AuthLayout from "./components/layouts/AuthLayout.js";
+import LoginPage from "./pages/LoginPage.js";
+import "./helper/api/AxiosRequestInterceptor.js";
 
 export const navigateTo = (url) => {
   window.history.pushState({}, "", url);
@@ -17,17 +19,34 @@ export const navigateTo = (url) => {
 const route = (event) => {
   event = event || window.event;
   event.preventDefault();
-  navigateTo(event.target.href);
+  const isAuth = !!AuthStateHelper.getAccessToken;
+  if (!isAuth && event.target.href !== "/login") {
+    navigateTo("/login");
+  } else {
+    navigateTo(event.target.href);
+  }
 };
 
 function loadLayout() {
-  new LoggedInLayout("container");
+  const isAuth = !!AuthStateHelper.getAccessToken();
+  if (isAuth) {
+    new LoggedInLayout("container");
+    return;
+  }
+  new AuthLayout("container");
 }
 
 function loadPage() {
   loadLayout();
+  const isAuth = !!AuthStateHelper.getAccessToken();
+  if (!isAuth) {
+      history.pushState({}, "", "/login");
+      return new LoginPage('layout-content');
+  }
   if (location.pathname === "/") {
     new HomePage("layout-content");
+  } else if (location.pathname === "/login") {
+    new LoginPage("layout-content");
   } else if (location.pathname.startsWith("/addAnimal")) {
     const id = location.pathname.split("/")[2];
     new AnimalFormPage("layout-content", id);

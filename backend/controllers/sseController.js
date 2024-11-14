@@ -1,11 +1,9 @@
 import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttHelper.js";
  export const sseDevices = (req, res) => {
-    res.writeHead(200, {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        "Connection": "keep-alive",
-      });
-      res.write("\n");
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+      res.flushHeaders();
 
       const sendEvent = () => {
         try {
@@ -25,12 +23,10 @@ import { getAllAvailableDevices, getCheckPointsWithAnimals } from "../mqtt/mqttH
  }
 
  export const sseCheckpoints = (req, res) => {
-    res.writeHead(200, {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        "Connection": "keep-alive",
-      });
-      res.write("\n");
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+      res.flushHeaders();
 
       const sendEvent = () => {
         try {

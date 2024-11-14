@@ -2,6 +2,8 @@ import mqttAPIHelper from "../helper/api/mqttAPIHelper.js";
 import PositionItem from "../components/PositionItem.js";
 import AnimalPositionsItem from "../components/AnimalPositionsItem.js";
 import AnimalsApiHelper from "../helper/api/AnimalsApiHelper.js";
+import PositionsStateHelper from "../helper/state/PositionsStateHelper.js";
+import "../helper/api/AxiosRequestInterceptor.js";
 
 export default class AnimalPositionsPage {
   constructor(selector) {
@@ -15,8 +17,9 @@ export default class AnimalPositionsPage {
     try {
       if (!this.checkpoints || this.checkpoints?.length <= 0) {
         const data = await mqttAPIHelper.getPositions();
-        console.log(data);
-        data.forEach(element => {
+        PositionsStateHelper.setPositions(data);
+        this.checkpoints = [];
+        PositionsStateHelper.getPositions().forEach(element => {
           this.checkpoints.push(element);
         });
       }

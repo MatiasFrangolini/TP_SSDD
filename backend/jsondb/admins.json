@@ -1,0 +1,12 @@
+[
+    {
+      "id": "a3bad91d-dfeb-4528-95da-19b5991af276",
+      "username": "Usuario1",
+      "password": "$2b$10$sUHQziS.ODUTmS7/hWzQr.yWg/Ly6.ow60XwVRuypt9yxAA/gvH.K"
+    },
+    {
+        "id": "95ed15e2-e433-407a-b6d1-f0f5684542b2",
+        "username": "Usuario2",
+        "password": "$2a$12$u0IenkBjTW4yWjxZytM6Xu4wgbdYkT4OI89wirvmuS0lGCdv66XSy"
+      }
+]

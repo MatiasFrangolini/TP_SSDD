@@ -1,5 +1,7 @@
 import checkPointsApiHelper from "../helper/api/checkPointsApiHelper.js";
 import CheckPointItem from "../components/checkPointItem.js";
+import CheckpointStateHelper from "../helper/state/CheckpointStateHelper.js";
+import "../helper/api/AxiosRequestInterceptor.js";
 
 export default class CheckPointPage {
   constructor(selector) {
@@ -11,10 +13,12 @@ export default class CheckPointPage {
     try {
       if (!this.checkPoints || this.checkPoints?.length <= 0) {
         const data = await checkPointsApiHelper.getCheckPoints();
-        this.checkPoints = data.checkPoints;
+        CheckpointStateHelper.setCheckPoints(data.checkPoints);
+        this.checkPoints = CheckpointStateHelper.getCheckPoints();
       }
     } catch (e) {
       console.log(e);
+      CheckpointStateHelper.setCheckPoints([]);
       this.checkPoints = [];
     } finally {
       this.render();

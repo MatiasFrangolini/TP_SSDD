@@ -1,5 +1,7 @@
 import AnimalsAPIHelper from "../helper/api/AnimalsApiHelper.js";
 import AnimalItem from "../components/AnimalItem.js";
+import AnimalStateHelper from "../helper/state/AnimalStateHelper.js";
+import "../helper/api/AxiosRequestInterceptor.js";
 
 export default class HomePage {
   constructor(selector) {
@@ -11,10 +13,12 @@ export default class HomePage {
     try {
       if (!this.animals || this.animals?.length <= 0) {
         const data = await AnimalsAPIHelper.getAnimals();
-        this.animals = data.animals;
+        AnimalStateHelper.setAnimals(data.animals);
+        this.animals = AnimalStateHelper.getAnimals();
       }
     } catch (e) {
       console.log(e);
+      AnimalStateHelper.setAnimals([]);
       this.animals = [];
     } finally {
       this.render();

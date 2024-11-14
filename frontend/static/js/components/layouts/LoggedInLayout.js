@@ -1,4 +1,14 @@
+import { navigateTo } from "../../index.js";
+import AuthStateHelper from "../../helper/state/AuthStateHelper.js";
+import UserStateHelper from "../../helper/state/UserStateHelper.js";
+
+window.logout = () => {
+  AuthStateHelper.deleteAuth();
+  UserStateHelper.deleteUser();
+  navigateTo("/login");
+}
 export default class LoggedInLayout {
+
   constructor(selector) {
     this.container = document.getElementById(selector);
     this.render();
@@ -15,6 +25,7 @@ export default class LoggedInLayout {
                     <a href="/availableDevices" id="addAnimal" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Agregar animal</a>
                     <a href="/checkpoints" id="checkpoints" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">CheckPoints</a>
                     <a href="/positions" id="animalPositions" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Ubicaciones</a>
+                    <a href="#" onclick="logout()" class="menu-link rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Cerrar sesión</a>
                   </div>
                 </div>
               </div>

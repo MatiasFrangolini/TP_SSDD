@@ -1,5 +1,7 @@
 import mqttAPIHelper from "../helper/api/mqttAPIHelper.js";
 import DeviceItem from "../components/DeviceItem.js";
+import DevicesStateHelper from "../helper/state/DevicesStateHelper.js";
+import "../helper/api/AxiosRequestInterceptor.js";
 
 export default class AvailableDevicesPage {
   constructor(selector) {
@@ -12,10 +14,12 @@ export default class AvailableDevicesPage {
     try {
       if (!this.devices || this.devices?.length <= 0) {
         const data = await mqttAPIHelper.getAvailableDevices();
-        this.devices = data;
+        DevicesStateHelper.setDevices(data);
+        this.devices = DevicesStateHelper.getDevices();
       }
     } catch (e) {
       console.log(e);
+      DevicesStateHelper.setDevices([]);
       this.devices = [];
     } finally {
       this.render();
