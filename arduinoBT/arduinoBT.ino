@@ -15,7 +15,6 @@ const int mqtt_port = 1883;
 const char* mqtt_user = ""; // Usuario del broker MQTT (Dejar "" si no se utiliza)
 const char* mqtt_password = ""; // Password del broker MQTT (Dejar "" si no se utiliza)
 const size_t bufferSize = 2048;
-setBufferSize(bufferSize); // Modifica el tamanio del buffer de la libreria PubSubClient
 const int devicesPerPacket = 3; // Esto es configurable por el usuario, se recomiendan entre 3 y 5.
 
 WiFiClient espClient;
