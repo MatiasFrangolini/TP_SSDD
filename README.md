@@ -23,8 +23,10 @@ Backend
 - nodemon, para demonizar el proceso y contar con hot reload ante modificaciones en los archivos.
 
 Frontend
+- Desarrollado como SPA
 - Axios para las requests HTTP
 - Vanilla JS, HTML
+- CSS implementado mediante TailWind
 
 ## Instalacion y uso
 > **Aviso:**
@@ -71,3 +73,19 @@ Para acceder a la version de promocion que incluye la API implementada en Expres
   - Se debe obtener la rama promocion, ejecutando por consola `git fetch origin promocion`
   - Luego moverse a esa branch, con el comando `git checkout promocion`
   - Correr back y frontend.
+
+Backend promocion
+  - Express, para la API REST
+  - BCrypt, para hashear, almacenar y comparar contraseñas
+  - jsonwebtoken, para gestionar los JWT
+
+Frontend promocion
+  - El access token se almacena en el session storage del navegador
+  - Leaflet.js, para implementar el mapa
+
+Usuarios
+  - admins.json, para almacenar los usuarios
+  - El log-in del usuario se realiza mediante un username y password
+  - Existen 2 usuarios con los que se puede probar la aplicacion (usuario:password):
+    - Usuario1:password123
+    - Usuario2:pass123
