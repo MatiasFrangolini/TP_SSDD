@@ -6,10 +6,10 @@ import express from "express";
 const app = express();
 
 app.post("/animals", authenticate, addAnimal);
+app.get("/animals/positions", authenticate, getCheckPointsAnimals);
 app.get("/animals/:id?", authenticate, getAllAnimals);
 app.delete("/animals/:id", authenticate, deleteAnimal);
 app.patch("/animals/:id", authenticate, patchAnimal);
-app.get("/animals/positions", authenticate, getCheckPointsAnimals);
 app.get("/availableDevices", authenticate, getAvailableDevices);
 
 export default app;

@@ -6,6 +6,28 @@ export default class PositionItem {
     this.lat = lat;
     this.long = long;
     this.description = description;
+    this.animals = [];
+  }
+
+  setAnimals(animals) {
+    this.animals = animals;
+  }
+
+  getAnimalsHtml() {
+    if (this.animals.length <= 0) {
+      return "";
+    } else {
+      let html = "";
+      this.animals.forEach((animal) => {
+        html += animal.name;
+        html += "<br>";
+      });
+      return html;
+    }
+  }
+
+  addAnimal(animal) {
+    this.animals.push(animal);
   }
 
   render() {

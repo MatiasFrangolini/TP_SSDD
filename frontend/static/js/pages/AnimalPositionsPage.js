@@ -24,7 +24,7 @@ export default class AnimalPositionsPage {
         });
       }
     } catch (e) {
-      console.log(e);
+      PositionsStateHelper.setPositions([]);
       this.checkpoints = [];
     } finally {
       this.render();
@@ -32,6 +32,7 @@ export default class AnimalPositionsPage {
   }
 
   async render() {
+    let animalsInZoneMap = new Map();
     let checkPointsHtml = `
       <h3 class="bg-gray text-center my-8 font-bold text-2xl">CheckPoints disponibles:</h3>
       <div class="grid grid-cols-4 gap-4 items-start">
@@ -45,6 +46,7 @@ export default class AnimalPositionsPage {
         const animalPositionsItems = await Promise.all(
           checkPoint.animals?.map(async (animal) => {
             const animalData = await AnimalsApiHelper.getAnimalById(animal.id);
+            positionItem.addAnimal(animalData);
             const animalPositionsItem = new AnimalPositionsItem(animalData.name, animalData.description);
             return animalPositionsItem.render();
           }));
@@ -57,7 +59,6 @@ export default class AnimalPositionsPage {
     
     checkPointsHtml += "</div>";
     //this.container.innerHTML = checkPointsHtml;
-    
     const checkpointsContainer = document.querySelector('#checkpoints-container');
     if (checkpointsContainer) {
         checkpointsContainer.innerHTML = checkPointsHtml;
@@ -79,9 +80,11 @@ export default class AnimalPositionsPage {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(this.map);
+
       this.positionItems.forEach((positionItem) => {
         const marker = L.marker([positionItem.lat, positionItem.long]).addTo(this.map);
-        marker.bindPopup(positionItem.description + "<br>"+ positionItem.lat + ", " + positionItem.long);
+        marker.bindPopup("<h2 style='font-weight: bold;'>"+ positionItem.description + "</h2>"+ "<br>"
+          + positionItem.lat + ", " + positionItem.long + " <br><br>" +"<h2 style='font-weight: bold;'> Animales: </h2>"+ positionItem.getAnimalsHtml());
       })
     }    
   }
