@@ -1,46 +1,44 @@
 {
-  "data": {
-    "animals": [
-      {
-        "id": "7B-D4-92-78-C1-08",
-        "name": "Animal1",
-        "description": "Descripcion1"
-      },
-      {
-        "id": "7B-D4-92-78-C1-09",
-        "name": "Animal2",
-        "description": "Descripcion2"
-      },
-      {
-        "id": "7B-D4-92-78-C1-10",
-        "name": "Animal3",
-        "description": "Descripcion3"
-      },
-      {
-        "id": "7B-D4-92-78-C1-11",
-        "name": "Animal4",
-        "description": "Descripcion4"
-      },
-      {
-        "id": "7B-D4-92-78-C1-12",
-        "name": "Animal5",
-        "description": "Descripcion5"
-      },
-      {
-        "id": "7B-D4-92-78-C1-13",
-        "name": "Animal6",
-        "description": "Descripcion6"
-      },
-      {
-        "id": "7B-D4-92-78-C1-14",
-        "name": "Animal7",
-        "description": "Descripcion7"
-      },
-      {
-        "id": "7B-D4-92-78-C1-17",
-        "name": "Animal8",
-        "description": "Descripcion8"
-      }
-    ]
-  }
+  "animals": [
+    {
+      "id": "7B-D4-92-78-C1-08",
+      "name": "Animal1",
+      "description": "Descripcion1"
+    },
+    {
+      "id": "7B-D4-92-78-C1-09",
+      "name": "Animal2",
+      "description": "Descripcion2"
+    },
+    {
+      "id": "7B-D4-92-78-C1-10",
+      "name": "Animal3",
+      "description": "Descripcion3"
+    },
+    {
+      "id": "7B-D4-92-78-C1-11",
+      "name": "Animal4",
+      "description": "Descripcion4"
+    },
+    {
+      "id": "7B-D4-92-78-C1-12",
+      "name": "Animal5",
+      "description": "Descripcion5"
+    },
+    {
+      "id": "7B-D4-92-78-C1-13",
+      "name": "Animal6",
+      "description": "Descripcion6"
+    },
+    {
+      "id": "7B-D4-92-78-C1-14",
+      "name": "Animal7",
+      "description": "Descripcion7"
+    },
+    {
+      "id": "7B-D4-92-78-C1-17",
+      "name": "Animal8",
+      "description": "Descripcion8"
+    }
+  ]
 }

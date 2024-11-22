@@ -15,9 +15,7 @@ export const getAnimals = () => {
 
 export const writeAnimals = (animals) => {
   const dataToWrite = {
-    data: {
-      animals: animals
-    }
+    animals: animals
   };
   writeFileSync(FILE_PATH, JSON.stringify(dataToWrite, null, 2));
 };

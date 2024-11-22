@@ -17,7 +17,7 @@ export const checkPointService = {
       throw new Error("Invalid data");
     }
     else{
-    var existingCheckPoints = getCheckPoints().data?.checkPoints;
+    var existingCheckPoints = getCheckPoints()?.checkPoints;
     console.log(existingCheckPoints);
     const newCheckPoint = {
       id: checkPointData.id,
@@ -39,7 +39,7 @@ export const checkPointService = {
   getSpecificCheckPoint: (id) => {
     var ver = 0;
     const arch = getCheckPoints();
-    var existingCheckPoints = arch.data.checkPoints;
+    var existingCheckPoints = arch.checkPoints;
     var SpecificCheckPoint;
     existingCheckPoints.forEach((checkPoint) => {
       if ((checkPoint.id === id)) {
@@ -55,7 +55,7 @@ export const checkPointService = {
 
   deleteCheckPoint: (id) => {
     const arch = getCheckPoints();
-    const existingCheckPoints = arch.data.checkPoints;
+    const existingCheckPoints = arch.checkPoints;
     const updatedCheckPoints = existingCheckPoints.filter(
       (checkPoints) => checkPoints.id !== id
     );
@@ -73,7 +73,7 @@ export const checkPointService = {
     } else {
     var ver = 0;
     const arch = getCheckPoints();
-    var existingCheckPoints = arch.data.checkPoints;
+    var existingCheckPoints = arch.checkPoints;
     existingCheckPoints.forEach((checkPoint) => {
       if ((checkPoint.id === id)) {
         ver = 1;
